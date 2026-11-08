@@ -7,6 +7,7 @@ import { getPublishedArticles } from '@/utils/content';
 
 const pageSize = 12;
 export async function getStaticPaths() {
+  const pageSize = 12;
   const articles = await getPublishedArticles();
   const totalPages = Math.ceil(articles.length / pageSize);
   return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => ({ params: { page: String(index + 2) }, props: { currentPage: index + 2, articles } }));
