@@ -39,7 +39,7 @@ const articles = defineCollection({
     title: z.string(),
     slug: z.string().optional(),
     excerpt: z.string().default(''),
-    publishDate: z.coerce.date().optional(),
+    publishDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('mravenzo. editorial team'),
     published: z.boolean().default(false),
@@ -54,6 +54,11 @@ const articles = defineCollection({
     featuredImageDescription: z.string().optional(),
     categories: categoryFlags,
     tags: z.array(z.string()).default([]),
+    affiliateLinks: z.array(z.object({
+      label: z.string().min(1),
+      url: z.string().url(),
+      merchant: z.string().optional(),
+    })).default([]),
     seo: seoFields,
   }),
 });

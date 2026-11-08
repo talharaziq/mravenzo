@@ -1,26 +1,32 @@
 ---
 slug: editorial-policy
 title: Editorial Policy
-description: How mravenzo. plans, prepares and updates its home and garden content.
+description: The standards used to prepare and maintain mravenzo. home and garden articles.
 published: true
 seo:
   title: Editorial Policy | mravenzo.
-  description: Read the editorial standards that guide mravenzo. home decor, interior styling and garden content.
+  description: Read the editorial standards for mravenzo. home decor, interior styling, garden and outdoor living articles.
   index: true
   follow: true
   schemaType: WebPage
 ---
 
-Our goal is to publish useful, readable ideas for real homes and outdoor spaces.
+## Editorial focus
 
-## Accuracy and updates
+mravenzo. publishes practical home decor, interior styling, garden and outdoor living content. Articles are written to answer a clear reader question and provide ideas that can be adapted to different homes, budgets and locations.
 
-We aim to check practical claims, identify when advice depends on a particular climate or material, and update pages when information changes. Readers can use the Contact page to point out errors or unclear advice.
+## Research and accuracy
+
+We check product details and practical claims against available sources before publication. Where a result depends on climate, materials, building conditions or local rules, the article should make that context clear. Readers can contact us with corrections or updated information.
 
 ## Images and attribution
 
-Images should be original, licensed for use or supplied with permission. Captions and meaningful alternative text should be added when an image is uploaded.
+We use original images, properly licensed assets or images supplied with permission. Meaningful images include descriptive alternative text. Captions identify a creator or source when attribution is required.
 
-## Commercial relationships
+## Affiliate relationships
 
-Any sponsored content, gifted products or affiliate links should be clearly identified on the relevant page. This section should be updated with the site's actual commercial policy before monetised content is published.
+mravenzo. uses affiliate links in selected articles and recommendations. A commission may be earned when a reader buys through an affiliate link, at no extra cost to the reader. Affiliate relationships are disclosed, and affiliate compensation does not guarantee a favourable opinion or determine our editorial conclusions. Read the [Affiliate Disclosure](/affiliate-disclosure/).
+
+## Updates and corrections
+
+When an article needs a material correction or update, we revise the page and update its modified date. Readers can report an error through the [Contact page](/contact/).

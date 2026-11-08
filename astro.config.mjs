@@ -6,5 +6,5 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   compressHTML: true,
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/search/') })],
 });

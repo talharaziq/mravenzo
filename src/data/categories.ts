@@ -102,7 +102,7 @@ export const categories: DecorCategory[] = [
     shortTitle: 'Front yard',
     description: 'Welcoming entrances, neat planting and thoughtful first impressions.',
     keyword: 'front yard decor ideas',
-    metaTitle: 'Front Yard Decor Ideas & Inspiration | mravenzo.',
+    metaTitle: 'Front Yard Decor Ideas | mravenzo.',
     metaDescription: 'Explore front yard decor ideas for welcoming entrances, planting, pathways and a more considered curb appeal.',
     icon: 'house',
     group: 'exterior',

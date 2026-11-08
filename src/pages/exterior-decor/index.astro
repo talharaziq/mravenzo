@@ -7,20 +7,19 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import { exteriorCategories } from '@/data/categories';
 import { getPublishedArticles, belongsToGroup } from '@/utils/content';
 import { site } from '@/data/site';
-
 const pageSize = 12;
 const articles = (await getPublishedArticles()).filter((article) => belongsToGroup(article, 'exterior'));
 const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
 const pageArticles = articles.slice(0, pageSize);
 const structuredData = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Exterior Decor', description: 'Garden decor and outdoor living ideas for gardens, patios, lighting and front yards.', url: `${site.url}/exterior-decor/` };
 ---
-<BaseLayout title="Garden & Exterior Decor Ideas | mravenzo." description="Discover garden decor, patio and deck styling, outdoor lighting and front yard ideas for inviting outdoor spaces." keywords="garden decor, exterior decor, patio decor, deck decor, outdoor lighting, front yard decor" structuredData={structuredData}>
+<BaseLayout robots={articles.length === 0 ? 'noindex,follow' : undefined} title="Garden & Exterior Decor Ideas | mravenzo." description="Discover garden decor, patio and deck styling, outdoor lighting and front yard ideas for inviting outdoor spaces." keywords="garden decor, exterior decor, patio decor, deck decor, outdoor lighting, front yard decor" structuredData={structuredData}>
   <section class="page-shell container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Exterior Decor' }]} />
     <header class="archive-intro"><span class="eyebrow">Beyond the walls</span><h1>Make the outdoors yours.</h1><p>From a small balcony garden to a welcoming front yard, find ideas for the places where fresh air, good light and a little care come together.</p></header>
     <div class="category-quick-links">{exteriorCategories.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}</div>
     <div class="archive-tools"><span class="archive-count">{articles.length} exterior {articles.length === 1 ? 'article' : 'articles'}</span><span class="archive-count">12 articles per page</span></div>
-    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="Outdoor ideas will grow here" text="Choose a topic above or publish an article and turn on one or more exterior category switches in Pages CMS." />}
+    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="No exterior articles yet" text="Choose a garden or outdoor topic above, or return when more stories have been published." />}
     <Pagination current={1} total={totalPages} basePath="/exterior-decor/" />
   </section>
 </BaseLayout>

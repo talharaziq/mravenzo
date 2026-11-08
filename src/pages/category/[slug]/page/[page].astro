@@ -5,7 +5,6 @@ import Pagination from '@/components/Pagination.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import { categories, type DecorCategory } from '@/data/categories';
 import { getPublishedArticles, belongsToCategory, type ArticleEntry } from '@/utils/content';
-
 const pageSize = 12;
 export async function getStaticPaths() {
   const pageSize = 12;
