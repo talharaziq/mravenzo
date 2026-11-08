@@ -1,18 +1,18 @@
 ---
 slug: about
 title: About mravenzo.
-description: A home and garden journal covering thoughtful interiors, practical decorating and outdoor spaces.
+description: A place for thoughtful home decor, garden ideas and the small details that make a space feel personal.
 published: true
 seo:
-  title: About mravenzo. | Home & Garden Ideas
-  description: Learn about mravenzo., a home and garden journal for practical decor ideas, considered interiors and welcoming outdoor spaces.
+  title: About mravenzo. | Home & Garden Inspiration
+  description: Meet mravenzo., an editorial home for thoughtful interior styling, garden decor and ideas for everyday spaces.
   index: true
   follow: true
-  schemaType: AboutPage
+  schemaType: WebPage
 ---
 
-mravenzo. is an independent home and garden journal about making everyday spaces work and feel better.
+mravenzo. is a home and garden journal for people who care about the feeling of a space.
 
-We publish practical ideas for interior styling, rooms, balconies, gardens and outdoor living. Our articles focus on useful details, clear explanations and ideas readers can adapt to their own homes.
+We collect ideas for rooms, balconies, gardens and outdoor corners. The aim is simple: useful inspiration, clear advice and details you can adapt to your own home.
 
-The journal is edited by the mravenzo. editorial team. For corrections, questions or editorial enquiries, use the Contact page.
+Our topics range from bedroom and kitchen styling to garden accents, patio living and outdoor lighting. As the journal grows, this page will tell you more about the people and process behind it.

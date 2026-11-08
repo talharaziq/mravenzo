@@ -35,11 +35,11 @@ const structuredData = { '@context': 'https://schema.org', '@type': 'Organizatio
   </section>
   <section class="featured-section" aria-labelledby="featured-title"><div class="container">
     <div class="section-heading"><div><span class="eyebrow">The editor’s selection</span><h2 id="featured-title">Featured articles</h2><p>Four stories selected to start you somewhere good.</p></div><a class="text-link" href="/articles/">View all articles <Icon name="arrow-right" size={16} /></a></div>
-    {featured.length > 0 ? <div class="featured-grid">{featured.map((article) => <ArticleCard article={article} variant="featured" />)}</div> : <EmptyState title="Selected stories are coming soon" text="The featured collection will bring together thoughtful ideas for rooms, gardens and outdoor spaces." />}
+    {featured.length > 0 ? <div class="featured-grid">{featured.map((article) => <ArticleCard article={article} variant="featured" />)}</div> : <EmptyState title="Your featured stories will live here" text="In the CMS, publish an article and switch on Featured to add it to this selection. The four highest-priority featured stories will appear here." />}
   </div></section>
   <section class="recent-section container" aria-labelledby="recent-title">
     <div class="section-heading"><div><span class="eyebrow">Fresh from the journal</span><h2 id="recent-title">Recently published</h2><p>New ideas and useful details for your next home or garden project.</p></div><a class="text-link" href="/articles/">Browse the library <Icon name="arrow-right" size={16} /></a></div>
-    {recent.length > 0 ? <div class="recent-grid">{recent.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="Fresh ideas are on the way" text="New home and garden articles will appear here as they are ready to read." />}
+    {recent.length > 0 ? <div class="recent-grid">{recent.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="Your latest ideas will appear here" text="Newly published articles will be listed here automatically, with the seven most recent stories shown on the homepage." />}
   </section>
   <section class="home-close container"><div class="home-close-inner"><div class="home-close-copy"><span class="eyebrow">A home that feels like yours</span><h2>Good ideas start with a space you want to spend time in.</h2></div><a class="button" href="/interior-decor/">Explore interior decor <Icon name="arrow-right" size={16} /></a></div></section>
 </BaseLayout>

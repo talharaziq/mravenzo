@@ -3,7 +3,7 @@
   const fields = ['title', 'url', 'description', 'image'].map(byId);
   if (fields.some((item) => !item)) return;
   const [title, url, description, image] = fields;
-  const fallbackImage = '/images/mravenzo-social-card.png';
+  const fallbackImage = '/images/mravenzo-social-card.svg';
   const safeUrl = (value) => {
     try {
       const parsed = new URL(value || 'https://mravenzo.com/your-page/', window.location.origin);

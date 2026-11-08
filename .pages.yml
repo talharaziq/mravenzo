@@ -12,15 +12,11 @@ content:
     label: Articles
     type: collection
     path: src/content/articles
-    filename:
-      template: "{year}/{primary}.md"
-      field: false
-    subfolders: true
+    filename: "{primary}.md"
     format: yaml-frontmatter
     view:
       primary: slug
       fields: [title, slug, publishDate, published, featured]
-      layout: tree
       sort: [publishDate, title]
       default:
         sort: publishDate
@@ -30,12 +26,12 @@ content:
         label: Article title
         type: string
         required: true
-        description: Use a clear, specific title that describes the article. New articles are saved in the current calendar-year folder automatically.
+        description: Use a clear, specific title that describes the article.
       - name: slug
         label: URL slug
         type: string
         required: true
-        description: Lowercase words separated by hyphens, for example small-balcony-decor. The file is saved as src/content/articles/YYYY/slug.md, and the year is added automatically when you create it.
+        description: Lowercase words separated by hyphens, for example small-balcony-decor. This also names the Markdown file.
       - name: excerpt
         label: Article excerpt
         type: text
@@ -156,25 +152,6 @@ content:
         list: true
         required: false
         description: Add a few precise supporting tags. Category switches control the main topic pages.
-      - name: affiliateLinks
-        label: Affiliate links
-        type: object
-        list: true
-        required: false
-        description: Add product or retailer links that earn a commission. These are shown in a clearly disclosed section and automatically marked rel=sponsored.
-        fields:
-          - name: label
-            label: Link text
-            type: string
-            required: true
-          - name: url
-            label: Affiliate URL
-            type: string
-            required: true
-          - name: merchant
-            label: Merchant or retailer
-            type: string
-            required: false
       - name: seo
         label: SEO settings — Rank Math style
         type: object

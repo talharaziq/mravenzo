@@ -17,12 +17,12 @@ const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
 const pageArticles = articles.slice(0, pageSize);
 const structuredData = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: category.title, description: category.metaDescription, url: `${site.url}/category/${category.slug}/` };
 ---
-<BaseLayout robots={articles.length === 0 ? 'noindex,follow' : undefined} title={category.metaTitle} description={category.metaDescription} keywords={category.keyword} structuredData={structuredData}>
+<BaseLayout title={category.metaTitle} description={category.metaDescription} keywords={category.keyword} structuredData={structuredData}>
   <section class="page-shell container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Categories', href: '/categories/' }, { label: category.title }]} />
     <header class="archive-intro"><span class="eyebrow">{category.group === 'interior' ? 'Inside the home' : 'Beyond the walls'}</span><h1>{category.title}</h1><p>{category.metaDescription}</p></header>
     <div class="archive-tools"><span class="archive-count">{articles.length} {articles.length === 1 ? 'article' : 'articles'} in this topic</span><span class="archive-count">12 articles per page</span></div>
-    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title={`No ${category.shortTitle.toLowerCase()} articles yet`} text="There are no published stories in this topic at the moment. Explore another category or check back later." />}
+    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title={`Your ${category.shortTitle.toLowerCase()} stories will appear here`} text="When you publish an article, switch on this category in Pages CMS. It will appear here and remain in the all-articles library." />}
     <Pagination current={1} total={totalPages} basePath={`/category/${category.slug}/`} />
   </section>
 </BaseLayout>

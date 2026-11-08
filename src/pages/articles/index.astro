@@ -12,7 +12,7 @@ const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
 const pageArticles = articles.slice(0, pageSize);
 const structuredData = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'All Articles', description: 'Home decor, interior styling, garden decor and outdoor living articles from mravenzo.', url: `${site.url}/articles/` };
 ---
-<BaseLayout robots={articles.length === 0 ? 'noindex,follow' : undefined} title="Home Decor & Garden Articles | mravenzo." description="Browse all mravenzo. articles for home decor, interior styling, garden decor, patios, balconies and outdoor living." keywords="home decor articles, interior decor ideas, garden decor articles, outdoor living" structuredData={structuredData}>
+<BaseLayout title="Home Decor & Garden Articles | mravenzo." description="Browse all mravenzo. articles for home decor, interior styling, garden decor, patios, balconies and outdoor living." keywords="home decor articles, interior decor ideas, garden decor articles, outdoor living" structuredData={structuredData}>
   <section class="page-shell container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Articles' }]} />
     <header class="archive-intro">
@@ -21,7 +21,7 @@ const structuredData = { '@context': 'https://schema.org', '@type': 'CollectionP
       <p>Browse every story in one place, from thoughtful room styling to garden details and outdoor spaces. Find a useful idea, save a little inspiration and make it your own.</p>
     </header>
     <div class="archive-tools"><span class="archive-count">{articles.length} {articles.length === 1 ? 'article' : 'articles'} published</span><span class="archive-count">Showing up to 12 per page</span></div>
-    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="The journal is getting started" text="The article library is currently empty. New home and garden stories will appear here when they are ready to read." />}
+    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="The journal is ready for its first story" text="Publish an article in Pages CMS and it will appear here automatically. Every published article is included in this library, even when no decor category is selected." />}
     <Pagination current={1} total={totalPages} basePath="/articles/" />
   </section>
 </BaseLayout>

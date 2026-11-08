@@ -13,7 +13,6 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content } = await render(article);
 const data = article.data;
-const affiliateLinks = data.affiliateLinks || [];
 const categoryList = getArticleCategories(article);
 const primaryCategory = categoryList[0];
 const title = data.seo?.title || data.title;
@@ -34,8 +33,6 @@ const schema = {
   publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${site.url}/favicon.svg` } },
   mainEntityOfPage: `${site.url}${articleUrl(article)}`,
   timeRequired: `PT${readingTime}M`,
-  inLanguage: 'en',
-  articleSection: categoryList.map((category) => category.title),
 };
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -94,21 +91,6 @@ const robots = `${data.seo?.index === false ? 'noindex' : 'index'},${data.seo?.f
           </figure>
         )}
         <div class="article-content"><Content /></div>
-        {affiliateLinks.length > 0 && (
-          <section class="affiliate-links" aria-labelledby="affiliate-links-title">
-            <span class="eyebrow">Shopping links</span>
-            <h2 id="affiliate-links-title">Products mentioned in this article</h2>
-            <p class="affiliate-links-disclosure">This section contains affiliate links. mravenzo. may earn a commission if you buy through these links, at no extra cost to you. Read our <a href="/affiliate-disclosure/">Affiliate Disclosure</a>.</p>
-            <ul>
-              {affiliateLinks.map((link) => (
-                <li>
-                  <a href={link.url} target="_blank" rel="sponsored noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>
-                  {link.merchant && <span class="affiliate-merchant">{link.merchant}</span>}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
         {data.tags.length > 0 && <div class="article-tags" aria-label="Article tags">{data.tags.map((tag) => <span>{tag}</span>)}</div>}
         {categoryList.length > 0 && <div class="article-tags" aria-label="Article categories">{categoryList.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}</div>}
         {related.length > 0 && (

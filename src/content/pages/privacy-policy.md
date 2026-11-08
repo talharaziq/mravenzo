@@ -1,38 +1,20 @@
 ---
 slug: privacy-policy
 title: Privacy Policy
-description: How mravenzo. handles information connected with visits, preferences and affiliate links.
+description: Information about how mravenzo. handles visitor data and privacy.
 published: true
 seo:
   title: Privacy Policy | mravenzo.
-  description: Read how mravenzo. handles browser preferences, technical site data, contact messages and affiliate referrals.
+  description: Read the mravenzo. privacy policy and information about visitor data, cookies and third-party services.
   index: true
   follow: true
   schemaType: WebPage
 ---
 
-## Information handled when you visit
+## Privacy policy setup required
 
-When you visit mravenzo., the hosting service processes technical information needed to deliver and secure the website. This can include your IP address, browser and device details, requested pages, referring page and request times in service logs. The site is hosted on Cloudflare Pages, and Cloudflare's privacy information explains how it handles service data.
+This page is a starter template, not a final legal policy. Review and replace it before launch, based on the tools and services you actually use.
 
-The website loads fonts from Google Fonts. A request to load those fonts is sent to Google, which may receive technical request information such as your IP address and browser details.
+Document the analytics tools, hosting and server logs, advertising or affiliate partners, embedded media, cookies, contact methods, data retention periods and any rights available to visitors in the regions where you operate.
 
-## Display preference
-
-mravenzo. saves your light or dark theme preference in your browser's local storage. The preference is stored under `mravenzo-theme` and is used only to remember the display mode you selected. The site does not use that value to identify you.
-
-## Affiliate links
-
-mravenzo. uses affiliate links in selected articles and recommendations. If you follow an affiliate link, the merchant or affiliate network may receive referral information and may use cookies or similar technologies to attribute a purchase or commission. Once you leave our website, the third party's privacy policy applies. Read our [Affiliate Disclosure](/affiliate-disclosure/) and [Cookie Policy](/cookies/).
-
-## Contact messages
-
-The Contact page uses an email link. Selecting it opens your email application; the message is sent through your email provider. mravenzo. does not operate an on-site contact form or user account system.
-
-## Analytics and advertising
-
-The current website does not include an on-site analytics tracker, advertising pixel, newsletter signup or user account registration. Cloudflare may process technical information as part of hosting and security. Affiliate merchants and networks may process referral activity when you choose to follow their links.
-
-## Your choices
-
-You can clear local storage and cookies through your browser settings. You can also choose not to follow affiliate links. For privacy questions or requests about a message you have sent us, use the email link on the [Contact page](/contact/).
+The current starter website does not include a newsletter signup, user account system or on-site contact form. Add details here if you introduce any of those features.

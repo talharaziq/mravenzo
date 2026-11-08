@@ -3,7 +3,6 @@ import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import Icon from '@/components/Icon.astro';
-import Icon from '@/components/Icon.astro';
 import { getPublishedPages } from '@/utils/content';
 import { site } from '@/data/site';
 
@@ -37,7 +36,7 @@ const robots = `${page.data.seo?.index === false ? 'noindex' : 'index'},${page.d
     <div class="text-page-body"><Content /></div>
     {page.id === 'contact' && (
       <div class="contact-details">
-        {site.contactEmail ? <a class="button contact-email-button" href={`mailto:${site.contactEmail}`} aria-label="Email mravenzo."><Icon name="mail" size={17} /> Email mravenzo. <span aria-hidden="true">↗</span></a> : <p class="contact-reminder">Use the Get in touch link to email mravenzo.</p>}
+        {site.contactEmail ? <a class="button contact-email-button" href={`mailto:${site.contactEmail}`} aria-label="Email mravenzo."><Icon name="mail" size={17} /> Email mravenzo. <span aria-hidden="true">↗</span></a> : <p class="contact-reminder">The contact email will be added here soon.</p>}
       </div>
     )}
   </section>

@@ -1,33 +1,33 @@
 ---
 slug: cookies
 title: Cookie Policy
-description: How mravenzo. uses browser storage, cookies and third-party services.
+description: Learn how mravenzo. uses cookies and similar browser technologies.
 published: true
 seo:
   title: Cookie Policy | mravenzo.
-  description: Read how mravenzo. uses browser storage and how affiliate partners and third-party services may use cookies.
+  description: Find out how mravenzo. uses cookies and browser storage to support site preferences and operation.
   focusKeyword: mravenzo cookie policy
   index: true
   follow: true
   schemaType: WebPage
 ---
 
-## Browser storage on mravenzo.
+## Cookies and browser storage
 
-mravenzo. stores your light or dark theme choice in your browser's local storage under the key `mravenzo-theme`. This remembers your display preference when you return. It is browser storage, not a cookie, and it is not used to identify you.
+Cookies are small files that websites can store in your browser. mravenzo. currently uses browser local storage to remember your light or dark theme preference. This setting stays in your browser and is not a cookie.
 
-## Affiliate links and partner cookies
+## Analytics and advertising
 
-mravenzo. uses affiliate links in selected articles and recommendations. When you follow an affiliate link, you leave mravenzo. and visit the merchant or affiliate network. Those services may use cookies or similar technologies to record the referral, measure a purchase or apply their own privacy and cookie settings. Their practices are explained in their own policies.
+The site does not currently include its own analytics or advertising scripts. If this changes, this policy will be updated to explain the technologies involved and the choices available to visitors.
 
-## Hosting and external services
+## Third-party services
 
-The site is hosted on Cloudflare Pages. The pages also load fonts from Google Fonts. These services may process technical request information, such as an IP address, browser details and requested resources, as part of delivering the service. Their own privacy information describes their handling of that data.
+The website uses third-party services to deliver parts of the site, such as its web fonts and hosting. Those providers may process technical information under their own policies. Their use of cookies or similar technologies is governed by the providers' terms and privacy information.
 
-## Managing browser data
+## Managing cookies and storage
 
-You can clear local storage and cookies through your browser settings. Clearing local storage removes the saved theme choice; mravenzo. will use the light theme until you select another one. Blocking cookies may affect how third-party merchants attribute affiliate referrals after you leave this site.
+You can manage or delete cookies and local storage through your browser settings. Clearing local storage will remove the saved theme preference; the site will return to its default light theme until you choose another one.
 
 ## Questions
 
-For questions about this policy, use the email link on the [Contact page](/contact/).
+For questions about this policy, visit the [Contact page](/contact/) and use the email link there.
