@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import Pagination from '@/components/Pagination.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { getPublishedArticles } from '@/utils/content';
+
+const pageSize = 12;
+export async function getStaticPaths() {
+  const pageSize = 12;
+  const articles = await getPublishedArticles();
+  const totalPages = Math.ceil(articles.length / pageSize);
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => ({ params: { page: String(index + 2) }, props: { currentPage: index + 2, articles } }));
+}
+const { currentPage, articles } = Astro.props;
+const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
+const pageArticles = articles.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+---
+<BaseLayout title={`Articles — Page ${currentPage} | mravenzo.`} description={`Page ${currentPage} of the mravenzo. home decor and garden inspiration article library.`} keywords="home decor articles, interior decor ideas, garden decor articles, outdoor living">
+  <section class="page-shell container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Articles', href: '/articles/' }, { label: `Page ${currentPage}` }]} />
+    <header class="archive-intro"><span class="eyebrow">The mravenzo. journal</span><h1>All articles</h1><p>Home, garden and outdoor living ideas, collected in one place.</p></header>
+    <div class="archive-tools"><span class="archive-count">Page {currentPage} of {totalPages}</span><span class="archive-count">12 articles per page</span></div>
+    <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div>
+    <Pagination current={currentPage} total={totalPages} basePath="/articles/" />
+  </section>
+</BaseLayout>

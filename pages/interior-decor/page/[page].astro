@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import Pagination from '@/components/Pagination.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { getPublishedArticles, belongsToGroup } from '@/utils/content';
+const pageSize = 12;
+export async function getStaticPaths() {
+  const pageSize = 12;
+  const articles = (await getPublishedArticles()).filter((article) => belongsToGroup(article, 'interior'));
+  return Array.from({ length: Math.max(0, Math.ceil(articles.length / pageSize) - 1) }, (_, index) => ({ params: { page: String(index + 2) }, props: { currentPage: index + 2, articles } }));
+}
+const { currentPage, articles } = Astro.props;
+const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
+const pageArticles = articles.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+---
+<BaseLayout title={`Interior Decor — Page ${currentPage} | mravenzo.`} description={`Page ${currentPage} of interior decor articles and room inspiration from mravenzo.`} keywords="interior decor, home decor, bedroom decor, kitchen decor, balcony decor">
+  <section class="page-shell container"><Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Interior Decor', href: '/interior-decor/' }, { label: `Page ${currentPage}` }]} /><header class="archive-intro"><span class="eyebrow">Inside the home</span><h1>Interior decor, with feeling.</h1><p>Ideas for home decor, bedrooms, kitchens and balconies.</p></header><div class="archive-tools"><span class="archive-count">Page {currentPage} of {totalPages}</span><span class="archive-count">12 articles per page</span></div><div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div><Pagination current={currentPage} total={totalPages} basePath="/interior-decor/" /></section>
+</BaseLayout>
