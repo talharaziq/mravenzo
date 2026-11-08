@@ -6,6 +6,7 @@ The article collection is intentionally empty. The site contains no copied artic
 
 ## Included
 
+
 - White-first editorial design, red accents, responsive navigation and a familiar moon/sun theme switch.
 - Eight decor topics, featured article slots and a recent-articles section.
 - Articles archive and category archives, paginated at 12 entries per page.
