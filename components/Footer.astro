@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import { interiorCategories, exteriorCategories } from '@/data/categories';
+---
+<footer class="site-footer">
+  <div class="footer-main container">
+    <div class="footer-brand-column">
+      <a class="brand footer-brand" href="/" aria-label="mravenzo home"><span>mr</span>avenzo.</a>
+      <p>Thoughtful ideas for the spaces you live in and the places you grow.</p>
+      <a class="footer-contact" href="/contact/"><Icon name="mail" size={16} /> Get in touch</a>
+    </div>
+    <div class="footer-links-column">
+      <h2>Explore</h2>
+      <a href="/articles/">All articles</a>
+      <a href="/interior-decor/">Interior decor</a>
+      <a href="/exterior-decor/">Exterior decor</a>
+      <a href="/categories/">All topics</a>
+    </div>
+    <div class="footer-links-column">
+      <h2>Inside</h2>
+      {interiorCategories.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}
+    </div>
+    <div class="footer-links-column">
+      <h2>Outside</h2>
+      {exteriorCategories.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <span>© {new Date().getFullYear()} mravenzo. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/cookies/">Cookies</a>
+      <a href="/editorial-policy/">Editorial policy</a>
+      <a href="/privacy-policy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </div>
+    <a class="back-to-top" href="#top">Back to top ↑</a>
+  </div>
+</footer>
