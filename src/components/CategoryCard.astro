@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import type { DecorCategory } from '@/data/categories';
+const { category, number } = Astro.props as { category: DecorCategory; number: string };
+---
+<a class="topic-card" href={`/category/${category.slug}/`} aria-label={`Explore ${category.title}`}>
+  <div class="topic-card-top">
+    <span class="topic-number">{number}</span>
+    <span class="topic-icon"><Icon name={category.icon} size={25} /></span>
+  </div>
+  <div class="topic-card-copy">
+    <h3>{category.title}</h3>
+    <p>{category.description}</p>
+  </div>
+  <span class="topic-card-link">Explore topic <Icon name="arrow-up-right" size={15} /></span>
+</a>

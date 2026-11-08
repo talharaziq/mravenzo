@@ -1,0 +1,383 @@
+media:
+  - name: images
+    label: Image library
+    input: public/images/uploads
+    output: /images/uploads
+    rename: safe
+    extensions: [jpg, jpeg, png, webp, avif, svg]
+    categories: [image]
+
+content:
+  - name: articles
+    label: Articles
+    type: collection
+    path: src/content/articles
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      primary: slug
+      fields: [title, slug, publishDate, published, featured]
+      sort: [publishDate, title]
+      default:
+        sort: publishDate
+        order: desc
+    fields:
+      - name: title
+        label: Article title
+        type: string
+        required: true
+        description: Use a clear, specific title that describes the article.
+      - name: slug
+        label: URL slug
+        type: string
+        required: true
+        description: Lowercase words separated by hyphens, for example small-balcony-decor. This also names the Markdown file.
+      - name: excerpt
+        label: Article excerpt
+        type: text
+        required: true
+        description: Short summary used on article cards and as the default meta description. Aim for 120–160 characters.
+      - name: publishDate
+        label: Publish date
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+      - name: updatedDate
+        label: Last updated
+        type: date
+        required: false
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm"
+      - name: author
+        label: Author name
+        type: string
+        required: false
+        description: Defaults to the mravenzo. editorial team when left empty.
+      - name: published
+        label: Publish this article
+        type: boolean
+        default: false
+        description: Turn on when the article is ready. Unpublished items stay out of the public website.
+      - name: draft
+        label: Keep as draft
+        type: boolean
+        default: false
+        description: Leave off for a published article. Draft articles never appear on the public site.
+      - name: featured
+        label: Add to homepage featured articles
+        type: boolean
+        default: false
+        description: Turn on to include this story in the homepage Featured articles section. Only the first four are shown.
+      - name: featuredOrder
+        label: Featured order
+        type: number
+        default: 99
+        description: Lower numbers appear first. Use 1–4 to control the four homepage feature positions.
+      - name: readingTime
+        label: Reading time in minutes
+        type: number
+        required: false
+        description: Optional override. If blank, the site estimates reading time from the article text.
+      - name: featuredImage
+        label: Featured image
+        type: image
+        required: false
+        options:
+          media: images
+          path: articles
+          extensions: [jpg, jpeg, png, webp, avif]
+      - name: featuredImageAlt
+        label: Featured image — alt text
+        type: string
+        required: false
+        description: Describe what is visible in the image for screen readers. Avoid keyword stuffing.
+      - name: featuredImageTitle
+        label: Featured image — title attribute
+        type: string
+        required: false
+        description: Optional short image title. This is separate from the alt text.
+      - name: featuredImageCaption
+        label: Featured image — caption
+        type: text
+        required: false
+        description: Optional caption displayed under the main article image. Include credit where needed.
+      - name: featuredImageDescription
+        label: Featured image — media description
+        type: text
+        required: false
+        description: Internal media-library note describing the image, its context or source.
+      - name: categories
+        label: Category switches
+        type: object
+        description: Turn on every category that fits. These are independent switches. Every published article appears on the Articles page even when all switches are off.
+        fields:
+          - name: homeDecor
+            label: Home Decor
+            type: boolean
+            default: false
+          - name: bedroomDecor
+            label: Bedroom Decor
+            type: boolean
+            default: false
+          - name: kitchenDecor
+            label: Kitchen Decor
+            type: boolean
+            default: false
+          - name: balconyDecor
+            label: Balcony Decor
+            type: boolean
+            default: false
+          - name: gardenDecor
+            label: Garden Decor
+            type: boolean
+            default: false
+          - name: patioDeckDecor
+            label: Patio & Deck Decor
+            type: boolean
+            default: false
+          - name: outdoorLighting
+            label: Outdoor Lighting
+            type: boolean
+            default: false
+          - name: frontYardDecor
+            label: Front Yard Decor
+            type: boolean
+            default: false
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+        required: false
+        description: Add a few precise supporting tags. Category switches control the main topic pages.
+      - name: seo
+        label: SEO settings — Rank Math style
+        type: object
+        description: Set a unique search snippet, target phrase, canonical URL and indexing rules for this article.
+        fields:
+          - name: title
+            label: SEO title
+            type: string
+            description: Search result title. A useful target is around 50–60 characters. Falls back to the article title.
+          - name: description
+            label: Meta description
+            type: text
+            description: Write a specific summary, usually around 140–160 characters. Falls back to the article excerpt.
+          - name: focusKeyword
+            label: Focus keyword
+            type: string
+            description: One primary search phrase this article is intended to answer.
+          - name: secondaryKeywords
+            label: Related keywords
+            type: string
+            list: true
+            description: Add close variants and related phrases naturally covered in the article.
+          - name: canonicalUrl
+            label: Canonical URL override
+            type: string
+            description: Leave blank to use this article's own URL. Only use an override when there is a genuine duplicate or preferred source URL.
+          - name: index
+            label: Allow search indexing
+            type: boolean
+            default: true
+          - name: follow
+            label: Allow search engines to follow links
+            type: boolean
+            default: true
+          - name: schemaType
+            label: Structured data type
+            type: select
+            options:
+              values: [Article, BlogPosting, NewsArticle]
+          - name: breadcrumbTitle
+            label: Breadcrumb label override
+            type: string
+            required: false
+          - name: ogTitle
+            label: Open Graph title
+            type: string
+            description: Facebook, LinkedIn and other social-card title. Falls back to the SEO title.
+          - name: ogDescription
+            label: Open Graph description
+            type: text
+            description: Social sharing summary. Falls back to the meta description.
+          - name: ogImage
+            label: Open Graph image
+            type: image
+            options:
+              media: images
+              path: social
+              extensions: [jpg, jpeg, png, webp, avif]
+          - name: ogImageAlt
+            label: Open Graph image alt text
+            type: string
+          - name: twitterCard
+            label: X / Twitter card type
+            type: select
+            options:
+              values:
+                - name: summary_large_image
+                  label: Large image card
+                - name: summary
+                  label: Small summary card
+          - name: twitterTitle
+            label: X / Twitter title
+            type: string
+          - name: twitterDescription
+            label: X / Twitter description
+            type: text
+          - name: twitterImage
+            label: X / Twitter image
+            type: image
+            options:
+              media: images
+              path: social
+              extensions: [jpg, jpeg, png, webp, avif]
+      - name: body
+        label: Article content
+        type: rich-text
+        required: false
+
+  - name: pages
+    label: Website pages
+    type: collection
+    path: src/content/pages
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      primary: slug
+      fields: [title, slug, published]
+    fields:
+      - name: title
+        label: Page title
+        type: string
+        required: true
+      - name: slug
+        label: URL slug
+        type: string
+        required: true
+        description: Use the existing page slug when editing a page, for example about, contact or editorial-policy.
+      - name: description
+        label: Page introduction
+        type: text
+        required: false
+      - name: published
+        label: Publish this page
+        type: boolean
+        default: true
+      - name: seo
+        label: SEO & social settings
+        type: object
+        fields:
+          - name: title
+            label: SEO title
+            type: string
+          - name: description
+            label: Meta description
+            type: text
+          - name: focusKeyword
+            label: Focus keyword
+            type: string
+          - name: secondaryKeywords
+            label: Related keywords
+            type: string
+            list: true
+          - name: canonicalUrl
+            label: Canonical URL override
+            type: string
+          - name: index
+            label: Allow search indexing
+            type: boolean
+            default: true
+          - name: follow
+            label: Allow search engines to follow links
+            type: boolean
+            default: true
+          - name: schemaType
+            label: Structured data type
+            type: select
+            options:
+              values: [WebPage, AboutPage, ContactPage]
+          - name: ogTitle
+            label: Open Graph title
+            type: string
+          - name: ogDescription
+            label: Open Graph description
+            type: text
+          - name: ogImage
+            label: Open Graph image
+            type: image
+            options:
+              media: images
+              path: social
+          - name: ogImageAlt
+            label: Open Graph image alt text
+            type: string
+          - name: twitterCard
+            label: X / Twitter card type
+            type: select
+            options:
+              values: [summary_large_image, summary]
+          - name: twitterTitle
+            label: X / Twitter title
+            type: string
+          - name: twitterDescription
+            label: X / Twitter description
+            type: text
+          - name: twitterImage
+            label: X / Twitter image
+            type: image
+            options:
+              media: images
+              path: social
+      - name: body
+        label: Page content
+        type: rich-text
+
+  - name: site-settings
+    label: Site settings
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - name: name
+        label: Website name
+        type: string
+      - name: title
+        label: Default SEO title
+        type: string
+      - name: description
+        label: Default meta description
+        type: text
+      - name: url
+        label: Canonical website URL
+        type: string
+        description: Update this to your final domain. Also update astro.config.mjs and public/robots.txt.
+      - name: contactEmail
+        label: Public contact email
+        type: string
+      - name: defaultOgImage
+        label: Default social sharing image
+        type: image
+        options:
+          media: images
+          path: social
+      - name: locale
+        label: Open Graph locale
+        type: string
+      - name: author
+        label: Default author name
+        type: string
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "content: add {path}"
+      update: "content: update {path}"
+      delete: "content: remove {path}"
+      rename: "content: rename {oldPath} to {newPath}"

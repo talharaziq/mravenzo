@@ -1,0 +1,16 @@
+---
+const { current = 1, total = 1, basePath = '/articles/' } = Astro.props as { current: number; total: number; basePath: string };
+const pageHref = (page: number) => page === 1 ? basePath : `${basePath}page/${page}/`;
+const pages = Array.from({ length: total }, (_, i) => i + 1);
+---
+{total > 1 && (
+  <nav class="pagination" aria-label="Pagination">
+    {current > 1 ? <a class="pagination-prev" href={pageHref(current - 1)}><span aria-hidden="true">←</span> Previous</a> : <span class="pagination-disabled">← Previous</span>}
+    <div class="pagination-pages">
+      {pages.map((page) => page === current
+        ? <span class="pagination-current" aria-current="page">{page}</span>
+        : <a href={pageHref(page)}>{page}</a>)}
+    </div>
+    {current < total ? <a class="pagination-next" href={pageHref(current + 1)}>Next <span aria-hidden="true">→</span></a> : <span class="pagination-disabled">Next →</span>}
+  </nav>
+)}

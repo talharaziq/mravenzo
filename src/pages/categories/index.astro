@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CategoryCard from '@/components/CategoryCard.astro';
+import { categories, interiorCategories, exteriorCategories } from '@/data/categories';
+import { site } from '@/data/site';
+const structuredData = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Home & Garden Decor Topics', description: 'All interior and exterior decor categories at mravenzo.', url: `${site.url}/categories/` };
+---
+<BaseLayout title="Explore Home & Garden Decor Topics | mravenzo." description="Browse all mravenzo. home decor and garden decor topics, including home, bedroom, kitchen, balcony, garden, patio and outdoor lighting ideas." keywords="home decor categories, garden decor topics, interior decor categories, exterior decor ideas" structuredData={structuredData}>
+  <section class="page-shell container">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Explore topics' }]} />
+    <header class="archive-intro"><span class="eyebrow">A place to begin</span><h1>Explore topics.</h1><p>Pick the part of your home or garden you’re thinking about. Each topic has its own collection of ideas, guides and inspiration.</p></header>
+    <div class="category-group"><h2 class="category-group-title">Interior decor <span>01 — 04</span></h2><div class="topics-grid">{interiorCategories.map((category, index) => <CategoryCard category={category} number={String(index + 1).padStart(2, '0')} />)}</div></div>
+    <div class="category-group"><h2 class="category-group-title">Exterior decor <span>05 — 08</span></h2><div class="topics-grid">{exteriorCategories.map((category, index) => <CategoryCard category={category} number={String(index + 5).padStart(2, '0')} />)}</div></div>
+  </section>
+</BaseLayout>

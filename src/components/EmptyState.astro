@@ -1,0 +1,8 @@
+---
+const { title = 'A little room for what’s next', text = 'New stories will appear here as they are published.' } = Astro.props;
+---
+<div class="empty-state">
+  <span class="empty-state-mark" aria-hidden="true">m.</span>
+  <h3>{title}</h3>
+  <p>{text}</p>
+</div>

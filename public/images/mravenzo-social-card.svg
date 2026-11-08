@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f3f0eb"/>
+  <circle cx="1010" cy="-20" r="360" fill="#e7e0d6"/>
+  <circle cx="1100" cy="660" r="340" fill="#dfe4d8"/>
+  <path d="M720 0h360v630H720z" fill="#e5ddd1"/>
+  <path d="M770 0h255v380H770z" fill="#f8f4ed"/>
+  <path d="M790 20h215v340H790z" fill="#cbd4c3"/>
+  <path d="M898 20v340M790 188h215" stroke="#f8f4ed" stroke-width="13"/>
+  <path d="M770 380h255v18H770z" fill="#9b7c60"/>
+  <path d="M680 488c0-66 55-120 122-120h195c67 0 122 54 122 120v74H680z" fill="#b6a58f"/>
+  <path d="M728 452c0-49 40-89 89-89h168c49 0 89 40 89 89v72H728z" fill="#e4ddd2"/>
+  <rect x="620" y="555" width="580" height="75" fill="#a89177"/>
+  <path d="M660 555h510" stroke="#8b735e" stroke-width="5"/>
+  <text x="83" y="212" fill="#c93337" font-family="Arial,sans-serif" font-size="64" font-weight="700" letter-spacing="-5">mr</text>
+  <text x="157" y="212" fill="#242321" font-family="Arial,sans-serif" font-size="64" font-weight="700" letter-spacing="-5">avenzo.</text>
+  <text x="83" y="329" fill="#242321" font-family="Georgia,serif" font-size="63">A considered home.</text>
+  <text x="83" y="400" fill="#242321" font-family="Georgia,serif" font-size="63" font-style="italic">A little more garden.</text>
+  <path d="M83 447h90" stroke="#c93337" stroke-width="3"/>
+  <text x="83" y="491" fill="#625f5a" font-family="Arial,sans-serif" font-size="20" letter-spacing="4">HOME &amp; GARDEN INSPIRATION</text>
+</svg>

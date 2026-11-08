@@ -1,0 +1,112 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import { getPublishedArticles, getArticleCategories, getReadingTime, formatDate, articleUrl } from '@/utils/content';
+import { site } from '@/data/site';
+
+export async function getStaticPaths() {
+  const articles = await getPublishedArticles();
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+const { article } = Astro.props;
+const { Content } = await render(article);
+const data = article.data;
+const categoryList = getArticleCategories(article);
+const primaryCategory = categoryList[0];
+const title = data.seo?.title || data.title;
+const description = data.seo?.description || data.excerpt || site.description;
+const image = data.seo?.ogImage || data.featuredImage || site.defaultOgImage;
+const imageAlt = data.seo?.ogImageAlt || data.featuredImageAlt || data.title;
+const modified = data.updatedDate || data.publishDate;
+const readingTime = getReadingTime(article);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': data.seo?.schemaType || 'Article',
+  headline: data.title,
+  description,
+  image: image.startsWith('http') ? image : new URL(image, site.url).toString(),
+  datePublished: data.publishDate?.toISOString(),
+  dateModified: modified?.toISOString(),
+  author: { '@type': data.author && data.author !== site.author ? 'Person' : 'Organization', name: data.author || site.author },
+  publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${site.url}/favicon.svg` } },
+  mainEntityOfPage: `${site.url}${articleUrl(article)}`,
+  timeRequired: `PT${readingTime}M`,
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+    { '@type': 'ListItem', position: 2, name: 'Articles', item: `${site.url}/articles/` },
+    { '@type': 'ListItem', position: 3, name: data.title, item: `${site.url}${articleUrl(article)}` },
+  ],
+};
+const allArticles = await getPublishedArticles();
+const related = allArticles.filter((item) => item.id !== article.id && categoryList.some((category) => item.data.categories?.[category.flag as keyof typeof item.data.categories])).slice(0, 3);
+const robots = `${data.seo?.index === false ? 'noindex' : 'index'},${data.seo?.follow === false ? 'nofollow' : 'follow'},max-image-preview:large`;
+---
+<BaseLayout
+  title={`${title} | mravenzo.`}
+  description={description}
+  canonical={data.seo?.canonicalUrl || undefined}
+  image={image}
+  imageAlt={imageAlt}
+  ogTitle={data.seo?.ogTitle || title}
+  ogDescription={data.seo?.ogDescription || description}
+  twitterCard={data.seo?.twitterCard || 'summary_large_image'}
+  twitterTitle={data.seo?.twitterTitle || data.seo?.ogTitle || title}
+  twitterDescription={data.seo?.twitterDescription || data.seo?.ogDescription || description}
+  twitterImage={data.seo?.twitterImage || image}
+  ogType="article"
+  keywords={[data.seo?.focusKeyword, ...(data.seo?.secondaryKeywords || [])].filter(Boolean).join(', ')}
+  author={data.author || site.author}
+  publishedTime={data.publishDate?.toISOString()}
+  modifiedTime={modified?.toISOString()}
+  robots={robots}
+  structuredData={[schema, breadcrumbSchema]}
+>
+  <article class="article-page">
+    <div class="article-layout">
+      <div class="article-main">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Articles', href: '/articles/' }, { label: data.seo?.breadcrumbTitle || data.title }]} />
+        <header class="article-header">
+          <div class="article-meta">
+            {primaryCategory && <a href={`/category/${primaryCategory.slug}/`}>{primaryCategory.title}</a>}
+            {data.publishDate && <><span class="meta-dot">·</span><time datetime={data.publishDate.toISOString()}>{formatDate(data.publishDate)}</time></>}
+          </div>
+          <h1>{data.title}</h1>
+          {data.excerpt && <p class="article-deck">{data.excerpt}</p>}
+          <div class="article-byline">
+            <span>By {data.author || site.author}</span>
+            <span><span aria-hidden="true">·</span><span> <span aria-hidden="true">◷</span> {readingTime} min read</span></span>
+            {data.updatedDate && <span>Updated {formatDate(data.updatedDate)}</span>}
+          </div>
+        </header>
+        {data.featuredImage && (
+          <figure class="article-hero-image">
+            <img src={data.featuredImage} alt={data.featuredImageAlt || data.title} title={data.featuredImageTitle || undefined} width="1400" height="900" fetchpriority="high" />
+            {data.featuredImageCaption && <figcaption>{data.featuredImageCaption}</figcaption>}
+          </figure>
+        )}
+        <div class="article-content"><Content /></div>
+        {data.tags.length > 0 && <div class="article-tags" aria-label="Article tags">{data.tags.map((tag) => <span>{tag}</span>)}</div>}
+        {categoryList.length > 0 && <div class="article-tags" aria-label="Article categories">{categoryList.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}</div>}
+        {related.length > 0 && (
+          <section class="related-section">
+            <div class="section-heading"><div><span class="eyebrow">Keep exploring</span><h2>Related stories</h2></div></div>
+            <div class="recent-grid">{related.map((item) => <ArticleCard article={item} />)}</div>
+          </section>
+        )}
+      </div>
+      <aside class="article-aside">
+        <div class="aside-note">
+          <span class="eyebrow">A note from mravenzo.</span>
+          <h2>Make it your own.</h2>
+          <p>Good spaces are personal. Take an idea, adapt it to your home and let the details feel like you.</p>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

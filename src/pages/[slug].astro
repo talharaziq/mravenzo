@@ -1,0 +1,42 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { getPublishedPages } from '@/utils/content';
+import { site } from '@/data/site';
+
+export async function getStaticPaths() {
+  const pages = await getPublishedPages();
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+const { page } = Astro.props;
+const { Content } = await render(page);
+const pageTitle = page.data.seo?.title || page.data.title;
+const description = page.data.seo?.description || page.data.description || site.description;
+const canonical = page.data.seo?.canonicalUrl || undefined;
+const socialImage = page.data.seo?.ogImage || site.defaultOgImage;
+const socialAlt = page.data.seo?.ogImageAlt || page.data.title;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': page.data.seo?.schemaType || 'WebPage',
+  name: page.data.title,
+  description,
+  url: `${site.url}/${page.id}/`,
+  isPartOf: { '@type': 'WebSite', name: site.name, url: site.url },
+};
+const robots = `${page.data.seo?.index === false ? 'noindex' : 'index'},${page.data.seo?.follow === false ? 'nofollow' : 'follow'},max-image-preview:large`;
+---
+<BaseLayout title={`${pageTitle} | mravenzo.`} description={description} canonical={canonical} image={socialImage} imageAlt={socialAlt} ogTitle={page.data.seo?.ogTitle || pageTitle} ogDescription={page.data.seo?.ogDescription || description} twitterCard={page.data.seo?.twitterCard || 'summary_large_image'} twitterTitle={page.data.seo?.twitterTitle || page.data.seo?.ogTitle || pageTitle} twitterDescription={page.data.seo?.twitterDescription || page.data.seo?.ogDescription || description} twitterImage={page.data.seo?.twitterImage || socialImage} keywords={[page.data.seo?.focusKeyword, ...(page.data.seo?.secondaryKeywords || [])].filter(Boolean).join(', ')} robots={robots} structuredData={structuredData}>
+  <section class="text-page">
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: page.data.title }]} />
+    <span class="eyebrow">mravenzo.</span>
+    <h1>{page.data.title}</h1>
+    {page.data.description && <p class="page-lede">{page.data.description}</p>}
+    <div class="text-page-body"><Content /></div>
+    {page.id === 'contact' && (
+      <div class="contact-details">
+        {site.contactEmail ? <a class="button" href={`mailto:${site.contactEmail}`}>Email mravenzo. <span aria-hidden="true">↗</span></a> : <p class="contact-reminder">Add your public contact email in Pages CMS under Site settings before launch.</p>}
+      </div>
+    )}
+  </section>
+</BaseLayout>

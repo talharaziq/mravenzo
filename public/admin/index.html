@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>mravenzo. — Content studio</title>
+  <style>
+    :root{font-family:Arial,sans-serif;color:#242321;background:#fbfaf7}*{box-sizing:border-box}body{margin:0;padding:48px 22px}.wrap{max-width:720px;margin:0 auto}.brand{font-size:27px;font-weight:800;letter-spacing:-2px}.brand span{color:#c93337}h1{margin:36px 0 12px;font:500 42px Georgia,serif;letter-spacing:-1.5px}.lead{color:#625f5a;line-height:1.7}.panel{margin:26px 0;padding:24px;border:1px solid #e9e5de;border-radius:8px;background:#fff}.panel h2{margin:0 0 10px;font-size:17px}.panel p,.panel li{color:#625f5a;font-size:14px;line-height:1.7}.button{display:inline-block;margin:8px 8px 0 0;padding:13px 18px;border-radius:4px;background:#c93337;color:#fff;text-decoration:none;font-size:13px;font-weight:700}.button.secondary{border:1px solid #e9e5de;background:#fff;color:#242321}.muted{color:#8a857e;font-size:12px}.steps{padding-left:20px}.steps li{margin:8px 0}.brand:hover{color:#c93337}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="brand" href="/"><span>mr</span>avenzo.</a>
+    <h1>Your content studio.</h1>
+    <p class="lead">Manage articles, website pages, image uploads and search metadata with Pages CMS. Your edits are saved to your connected GitHub repository and Cloudflare Pages rebuilds the static site.</p>
+    <section class="panel">
+      <h2>Open Pages CMS</h2>
+      <p>Sign in with the GitHub account that has access to the mravenzo. repository. Install the Pages CMS GitHub App when prompted and select this repository.</p>
+      <a class="button" href="https://app.pagescms.org/" target="_blank" rel="noopener noreferrer">Open Pages CMS ↗</a>
+      <a class="button secondary" href="/admin/seo-preview.html">SEO & social preview</a>
+    </section>
+    <section class="panel">
+      <h2>First-time setup</h2>
+      <ol class="steps">
+        <li>Upload this project to a new GitHub repository.</li>
+        <li>Connect that repository to Cloudflare Pages with <strong>npm run build</strong> as the build command and <strong>dist</strong> as the output folder.</li>
+        <li>Open Pages CMS, install its GitHub App and choose your repository. It reads the field setup from <strong>.pages.yml</strong>.</li>
+        <li>In Site settings, set the final website URL and contact email. Update the same domain in <strong>astro.config.mjs</strong> and <strong>public/robots.txt</strong>.</li>
+      </ol>
+    </section>
+    <p class="muted">The content editor is hosted by Pages CMS. This page is a shortcut and setup guide; it does not store your GitHub credentials.</p>
+  </main>
+</body>
+</html>
