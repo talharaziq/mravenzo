@@ -1,3 +1,4 @@
+
 ---
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -46,9 +47,16 @@ const {
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString() || site.url;
-const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
-const imageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).toString();
-const twitterImageUrl = twitterImage.startsWith('http') ? twitterImage : new URL(twitterImage, siteUrl).toString();
+const canonicalUrl =
+  canonical || new URL(Astro.url.pathname, siteUrl).toString();
+
+const imageUrl = image.startsWith('http')
+  ? image
+  : new URL(image, siteUrl).toString();
+
+const twitterImageUrl = twitterImage.startsWith('http')
+  ? twitterImage
+  : new URL(twitterImage, siteUrl).toString();
 
 const baseSchema = {
   '@context': 'https://schema.org',
@@ -60,21 +68,22 @@ const baseSchema = {
   publisher: {
     '@type': 'Person',
     name: site.author,
-    url: `${siteUrl}/author/`,
+    url: new URL('/author/', siteUrl).toString(),
   },
   potentialAction: {
     '@type': 'SearchAction',
-    target: `${siteUrl}/search/?q={search_term_string}`,
+    target: `${new URL('/search/', siteUrl).toString()}?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
 };
 
 const schemas = [
   baseSchema,
-  ...(Array.isArray(structuredData) ? structuredData : [structuredData])
+  ...(Array.isArray(structuredData) ? structuredData : [structuredData]),
 ];
 
-const safeJson = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c');
+const safeJson = (value: unknown) =>
+  JSON.stringify(value).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -85,6 +94,21 @@ const safeJson = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003
     <meta name="theme-color" content="#fff7f7" />
     <meta name="color-scheme" content="light dark" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-N9T52KM7');
+    </script>
+    <!-- End Google Tag Manager -->
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -116,14 +140,19 @@ const safeJson = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003
     <meta name="twitter:image" content={twitterImageUrl} />
     <meta name="twitter:image:alt" content={imageAlt} />
 
-    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
-    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    {publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
+    {modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime} />
+    )}
 
     <script is:inline>
       (() => {
         try {
           const saved = localStorage.getItem('pawpawdecors-theme');
-          document.documentElement.dataset.theme = saved === 'dark' ? 'dark' : 'light';
+          document.documentElement.dataset.theme =
+            saved === 'dark' ? 'dark' : 'light';
         } catch (_) {
           document.documentElement.dataset.theme = 'light';
         }
@@ -136,12 +165,28 @@ const safeJson = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003
   </head>
 
   <body id="top">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-N9T52KM7"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <a class="skip-link" href="#main-content">Skip to content</a>
+
     <Header />
+
     <main id="main-content">
       <slot />
     </main>
+
     <Footer />
+
     <script src="/scripts/site.js" defer></script>
   </body>
 </html>
