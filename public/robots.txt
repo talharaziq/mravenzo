@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mravenzo.com/sitemap-index.xml
+Sitemap: https://pawpawdecors.com/sitemap-index.xml
