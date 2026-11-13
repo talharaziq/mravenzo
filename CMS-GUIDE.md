@@ -1,6 +1,6 @@
 # PawpawDecors — publishing guide
 
-PawpawDecors uses [Pages CMS](https://app.pagescms.org/) as a Git-based content editor. The `.pages.yml` file defines the editing forms. Pages CMS saves articles and page changes in the repository; your hosting workflow rebuilds the static site after a commit.
+PawpawDecors uses [Pages CMS](https://app.pagescms.org/) as a Git-based content editor. The `.pages.yml` file defines the editing forms. Pages CMS saves articles and page changes in the repository; Cloudflare Workers Builds or the Wrangler deploy command rebuilds and publishes the static site. Pages CMS is separate from Cloudflare Pages hosting.
 
 ## Create and publish an article
 
@@ -22,7 +22,7 @@ Turn on **Add to homepage featured articles** for a published story to include i
 
 ## Recently published and article cards
 
-The homepage and article archives use compact horizontal article rows. Each row shows the featured image on the left, one line for the title and up to two lines for the excerpt. Longer text is clipped to keep the rows aligned.
+The homepage and article archives use compact horizontal article rows. Each row shows the featured image on the left, with titles and excerpts each clamped to a maximum of three lines. Longer text is clipped so the rows stay readable.
 
 ## Affiliate links
 
@@ -54,3 +54,7 @@ The Interior Decor and Garden & Outdoor navigation pages group their respective 
 The Pages collection includes About, Author, Contact, Guest Posting, Cookie Policy, Editorial Policy, Privacy Policy and Terms of Use. Keep the existing slug when editing a page so its URL does not change.
 
 Google AdSense code is not part of the repository because it needs the publisher's own account details. Before enabling advertising, ensure the site has substantial original content, clear navigation, working legal pages and any consent tools required for the locations where ads are served. No search or advertising service can promise approval or rankings.
+
+## Hosting and contact form
+
+The site is deployed to Cloudflare Workers. The public Astro pages are pre-rendered into `dist/`; the Worker handles `/api/contact` and sends contact messages to `talharaziq@outlook.com` through Cloudflare Email Service. Follow [WORKERS-DEPLOY.md](./WORKERS-DEPLOY.md) before moving the production domain or enabling the email form.

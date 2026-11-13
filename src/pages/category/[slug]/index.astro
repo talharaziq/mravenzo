@@ -24,7 +24,7 @@ const structuredData = {
   url: `${site.url}/category/${category.slug}/`,
 };
 ---
-<BaseLayout title={category.metaTitle} description={category.metaDescription} keywords={category.keyword} structuredData={structuredData}>
+<BaseLayout title={category.metaTitle} description={category.metaDescription} structuredData={structuredData}>
   <section class="page-shell container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Topics', href: '/categories/' }, { label: category.title }]} />
     <header class="archive-intro">

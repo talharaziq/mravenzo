@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import Icon from '@/components/Icon.astro';
+import ContactForm from '@/components/ContactForm.astro';
 import { getPublishedPages } from '@/utils/content';
 import { site } from '@/data/site';
 
@@ -25,6 +26,7 @@ const canonical = page.data.seo?.canonicalUrl || undefined;
 const socialImage = page.data.seo?.ogImage || site.defaultOgImage;
 const socialAlt = page.data.seo?.ogImageAlt || page.data.title;
 const isAuthor = page.id === 'author';
+const isContact = page.id === 'contact';
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -70,6 +72,7 @@ const robots = `${page.data.seo?.index === false ? 'noindex' : 'index'},${page.d
     <h1>{page.data.title}</h1>
     {page.data.description && <p class="page-lede">{page.data.description}</p>}
     <div class="text-page-body"><Content /></div>
+    {isContact && <ContactForm />}
     {isAuthor && (
       <nav class="author-links" aria-label="Talha Raziq links">
         <a href="https://www.linkedin.com/in/talharaziq" target="_blank" rel="me noopener noreferrer">LinkedIn</a>

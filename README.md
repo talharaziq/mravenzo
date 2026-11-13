@@ -1,6 +1,6 @@
 # PawpawDecors
 
-PawpawDecors is a responsive, static Astro website for home decor, gardening, outdoor living and plant-care articles. It uses Pages CMS for Git-based content editing and is configured for the custom domain `https://pawpawdecors.com`.
+PawpawDecors is a responsive Astro website for home decor, gardening, outdoor living and plant-care articles. Astro generates the public pages as static files; Cloudflare Workers serves those assets and handles the contact-form email endpoint. It uses Pages CMS for Git-based content editing and the canonical site address is `https://pawpawdecors.com`.
 
 ## Run locally
 
@@ -12,27 +12,26 @@ npm install
 npm run dev
 ```
 
-Build and preview the static site:
+Build the static site and run the Worker locally:
 
 ```sh
 npm run build
-npm run preview
+npm run dev:worker
 ```
 
-The production site is generated in `dist/`.
+The production site is generated in `dist/`. `npm run preview` also starts Wrangler with the built assets and Worker endpoint.
 
 ## Publishing
 
-The `.pages.yml` file defines the Pages CMS collections for articles, website pages and site settings. Pages CMS commits edits to the connected GitHub repository. The hosting workflow can then rebuild the static site.
+The `.pages.yml` file defines the Pages CMS collections for articles, website pages and site settings. Pages CMS commits edits to the connected GitHub repository. Workers Builds or the local Wrangler deploy command can then rebuild and publish the site. Pages CMS is the editor name; it does not require Cloudflare Pages hosting.
 
-For Cloudflare Pages, use:
+For Cloudflare Workers, use the Wrangler configuration in `wrangler.jsonc`. Deploy from the command line with:
 
-| Setting | Value |
-|---|---|
-| Framework preset | Astro (or None) |
-| Build command | `npm run build` |
-| Build output directory | `dist` |
-| Node.js version | `22.23.4` or newer |
+```sh
+npm run deploy
+```
+
+The command builds Astro into `dist/` and deploys that directory as Workers static assets, alongside `worker/index.ts`. Follow [WORKERS-DEPLOY.md](./WORKERS-DEPLOY.md) to connect Workers Builds, move the custom domain from Pages, and configure the contact email binding.
 
 ## Articles and homepage features
 

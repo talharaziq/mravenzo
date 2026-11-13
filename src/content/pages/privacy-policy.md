@@ -20,11 +20,11 @@ PawpawDecors is an independently managed website founded and operated by Talha R
 
 You can read the website without creating an account. There is no reader account or on-site comment system.
 
-When you email the site, the message may include your email address, name and any information you choose to share. That information is used to read and respond to your enquiry, handle a correction or consider a relevant collaboration. Your message is also processed by the email providers involved in sending and receiving it.
+When you use the contact form or email the site, you may provide your name, email address, subject and message. This information is used to respond to your enquiry, handle a correction or consider a relevant collaboration. The contact form is handled by a Cloudflare Worker, and Cloudflare Email Service sends the message to the site admin at talharaziq@outlook.com. Cloudflare may process request details, including your IP address, to operate and protect the form. The email address you provide is used as the reply-to address.
 
 ## Technical information
 
-The website's hosting provider may process technical information needed to deliver and protect the site, such as IP address, browser type, device information, requested pages and request times. The site loads fonts from Google Fonts, which may receive standard technical information when your browser requests those files.
+Cloudflare Workers hosts the website and may process technical information needed to deliver and protect it, such as IP address, browser type, device information, requested pages and request times. The contact form uses a Cloudflare rate-limit binding to reduce automated or repeated submissions. The site loads fonts from Google Fonts, which may receive standard technical information when your browser requests those files.
 
 PawpawDecors currently uses browser local storage to remember the light or dark theme preference. This setting is stored on your device and can be cleared in your browser.
 
@@ -44,7 +44,7 @@ Information is used to operate and protect the website, respond to messages, cor
 
 ## Retention and your choices
 
-Emails are kept for as long as reasonably needed to handle the enquiry and maintain relevant records. Technical logs and third-party records are handled under the retention practices of the providers involved. You can clear the theme preference through your browser settings and manage cookies through the same controls.
+Contact messages are delivered to the site admin’s Outlook inbox and are kept for as long as reasonably needed to handle the enquiry and maintain relevant records. PawpawDecors does not maintain a separate contact-form message database. Technical logs and third-party records are handled under the retention practices of the providers involved. You can clear the theme preference through your browser settings and manage cookies through the same controls.
 
 Privacy rights vary by country. Where applicable law gives you rights to access, correct or delete personal information, you can contact the site admin to make a request.
 

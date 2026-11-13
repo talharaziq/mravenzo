@@ -8,6 +8,7 @@ import { getPublishedArticles, belongsToCategory, type ArticleEntry } from '@/ut
 
 const pageSize = 12;
 export async function getStaticPaths() {
+  const pageSize = 12;
   const allArticles = await getPublishedArticles();
   const routes: { params: { slug: string; page: string }; props: { category: DecorCategory; currentPage: number; articles: ArticleEntry[] } }[] = [];
   for (const category of categories) {

@@ -1,0 +1,110 @@
+<section class="contact-form-panel" aria-labelledby="contact-form-title">
+  <div class="contact-form-heading">
+    <span class="eyebrow">Send a message</span>
+    <h2 id="contact-form-title">How can we help?</h2>
+    <p>Use this form for website issues, article corrections, questions or collaboration enquiries. Your message will be sent to the PawpawDecors admin.</p>
+  </div>
+
+  <form class="contact-form" action="/api/contact" method="post" data-contact-form>
+    <div class="contact-form-grid">
+      <label class="contact-field" for="contact-name">
+        <span>Your name</span>
+        <input id="contact-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required />
+      </label>
+      <label class="contact-field" for="contact-email">
+        <span>Email address</span>
+        <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+      </label>
+    </div>
+
+    <label class="contact-field" for="contact-subject">
+      <span>What is this about?</span>
+      <select id="contact-subject" name="subject" required>
+        <option value="" selected disabled>Choose a subject</option>
+        <option value="Website issue">Website issue</option>
+        <option value="Article correction">Article correction</option>
+        <option value="Article question">Article question</option>
+        <option value="Collaboration">Collaboration</option>
+        <option value="Other">Something else</option>
+      </select>
+    </label>
+
+    <label class="contact-field" for="contact-message">
+      <span>Your message</span>
+      <textarea id="contact-message" name="message" rows="6" minlength="20" maxlength="5000" placeholder="Tell us what happened or how we can help…" required></textarea>
+      <small>Please do not include passwords, payment details or other sensitive information.</small>
+    </label>
+
+    <div class="contact-form-trap" aria-hidden="true">
+      <label for="contact-website">Leave this field empty</label>
+      <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="contact-form-footer">
+      <button class="button" type="submit" data-contact-submit>Send message</button>
+      <span class="contact-form-note">A reply will go to the email address you enter.</span>
+    </div>
+    <p class="contact-form-status" data-contact-status role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
+
+  if (contactForm) {
+    const status = contactForm.querySelector<HTMLElement>('[data-contact-status]');
+    const submitButton = contactForm.querySelector<HTMLButtonElement>('[data-contact-submit]');
+    const showStatus = (message: string, state: 'success' | 'error') => {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.state = state;
+    };
+
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('sent') === '1') {
+      showStatus('Your message has been sent. Thank you for getting in touch.', 'success');
+    } else if (query.get('error') === '1') {
+      showStatus('Your message could not be sent. Please check the form and try again.', 'error');
+    }
+    if (query.has('sent') || query.has('error')) {
+      window.history.replaceState({}, '', `${window.location.pathname}${window.location.hash}`);
+    }
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) return;
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending…';
+      }
+      contactForm.setAttribute('aria-busy', 'true');
+      if (status) {
+        status.textContent = 'Sending your message…';
+        delete status.dataset.state;
+      }
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' },
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(typeof result.message === 'string' ? result.message : 'Your message could not be sent. Please try again.');
+        }
+        showStatus(result.message || 'Your message has been sent. Thank you for getting in touch.', 'success');
+        contactForm.reset();
+      } catch (error) {
+        showStatus(error instanceof Error ? error.message : 'Your message could not be sent. Please try again.', 'error');
+      } finally {
+        contactForm.removeAttribute('aria-busy');
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send message';
+        }
+      }
+    });
+  }
+</script>

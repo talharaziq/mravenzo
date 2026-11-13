@@ -1,7 +1,11 @@
 import type { APIRoute } from 'astro';
 import { getPublishedArticles, articleUrl } from '@/utils/content';
 import { site } from '@/data/site';
+
+export const prerender = true;
+
 const escapeXml = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+
 export const GET: APIRoute = async () => {
   const articles = await getPublishedArticles();
   const items = articles.map((article) => {

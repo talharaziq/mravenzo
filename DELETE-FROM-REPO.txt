@@ -1,0 +1,4 @@
+Delete these two unreferenced legacy image files from the GitHub repository. They are not needed by the PawpawDecors site and retain the old Mravenzo brand name:
+
+public/images/mravenzo-hero.svg
+public/images/mravenzo-social-card.svg
