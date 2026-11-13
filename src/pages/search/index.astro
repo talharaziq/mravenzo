@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getPublishedArticles, getArticleCategories, articleUrl, formatDate } from '@/utils/content';
+
 const articles = await getPublishedArticles();
 const index = articles.map((article) => ({
   title: article.data.title,
@@ -8,18 +9,28 @@ const index = articles.map((article) => ({
   url: articleUrl(article),
   date: article.data.publishDate?.toISOString() || '',
   dateLabel: formatDate(article.data.publishDate),
+  image: article.data.featuredImage || '',
+  imageAlt: article.data.featuredImageAlt || article.data.title,
   categories: getArticleCategories(article).map((category) => category.title),
   keywords: [article.data.seo?.focusKeyword, ...(article.data.seo?.secondaryKeywords || []), ...(article.data.tags || [])].filter(Boolean).join(' '),
 }));
 const searchIndex = JSON.stringify(index).replace(/</g, '\\u003c');
 const initialQuery = Astro.url.searchParams.get('q') || '';
 ---
-<BaseLayout title="Search Home Decor & Garden Articles | mravenzo." description="Search mravenzo. articles for home decor, bedroom decor, kitchen decor, balcony decor, garden decor, patio styling and more." robots="noindex,follow">
-  <section class="search-page"><div class="search-page-inner">
-    <span class="eyebrow">Find a useful idea</span><h1>Search the journal.</h1><p class="search-page-intro">Look for a room, a garden corner or a detail you have in mind.</p>
-    <form class="search-page-form" id="site-search-form" role="search"><input type="search" id="site-search-input" name="q" value={initialQuery} placeholder="Try ‘small balcony’ or ‘warm lighting’…" aria-label="Search articles" /><button class="button" type="submit">Search</button></form>
-    <div class="archive-tools"><span class="archive-count" id="search-result-count">{articles.length} published {articles.length === 1 ? 'article' : 'articles'} to search</span></div>
-    <div id="search-results" class="search-results" aria-live="polite">{initialQuery ? <div class="search-results-empty">Searching…</div> : <div class="search-results-empty">Enter a word or phrase to search published articles.</div>}</div>
-  </div><script type="application/json" id="mravenzo-search-index" set:html={searchIndex}></script></section>
+<BaseLayout title="Search Articles | PawpawDecors" description="Search PawpawDecors for home decor ideas, garden guides and practical plant-care articles." robots="noindex,follow">
+  <section class="search-page">
+    <div class="search-page-inner">
+      <span class="eyebrow">Find a useful idea</span>
+      <h1>Search the journal.</h1>
+      <p class="search-page-intro">Look for a room, a garden corner or a plant-care question.</p>
+      <form class="search-page-form" id="site-search-form" role="search">
+        <input type="search" id="site-search-input" name="q" value={initialQuery} placeholder="Try ‘Monstera care’ or ‘small balcony’…" aria-label="Search articles" />
+        <button class="button" type="submit">Search</button>
+      </form>
+      <div class="archive-tools"><span class="archive-count" id="search-result-count">{articles.length} published {articles.length === 1 ? 'article' : 'articles'} to search</span></div>
+      <div id="search-results" class="search-results" aria-live="polite">{initialQuery ? <div class="search-results-empty">Searching the article library…</div> : <div class="search-results-empty">Enter a word or phrase to search published articles.</div>}</div>
+    </div>
+    <script type="application/json" id="pawpawdecors-search-index" set:html={searchIndex}></script>
+  </section>
   <script src="/scripts/search.js" defer></script>
 </BaseLayout>

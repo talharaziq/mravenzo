@@ -6,22 +6,33 @@ import Pagination from '@/components/Pagination.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import { getPublishedArticles } from '@/utils/content';
 import { site } from '@/data/site';
+
 const articles = await getPublishedArticles();
 const pageSize = 12;
 const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
 const pageArticles = articles.slice(0, pageSize);
-const structuredData = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'All Articles', description: 'Home decor, interior styling, garden decor and outdoor living articles from mravenzo.', url: `${site.url}/articles/` };
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Home, Garden & Plant Articles',
+  description: 'Practical decor inspiration, garden ideas and plant-care guides from PawpawDecors.',
+  url: `${site.url}/articles/`,
+};
 ---
-<BaseLayout title="Home Decor & Garden Articles | mravenzo." description="Browse all mravenzo. articles for home decor, interior styling, garden decor, patios, balconies and outdoor living." keywords="home decor articles, interior decor ideas, garden decor articles, outdoor living" structuredData={structuredData}>
+<BaseLayout
+  title="Home, Garden & Plant Articles | PawpawDecors"
+  description="Browse PawpawDecors articles for home decor, gardening, houseplant care, balconies, patios and outdoor living."
+  structuredData={structuredData}
+>
   <section class="page-shell container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Articles' }]} />
     <header class="archive-intro">
-      <span class="eyebrow">The mravenzo. journal</span>
-      <h1>Ideas worth bringing home.</h1>
-      <p>Browse every story in one place, from thoughtful room styling to garden details and outdoor spaces. Find a useful idea, save a little inspiration and make it your own.</p>
+      <span class="eyebrow">The PawpawDecors journal</span>
+      <h1>Ideas worth keeping.</h1>
+      <p>Browse practical guides and inspiration for home styling, gardens and the plants that make a space feel alive.</p>
     </header>
-    <div class="archive-tools"><span class="archive-count">{articles.length} {articles.length === 1 ? 'article' : 'articles'} published</span><span class="archive-count">Showing up to 12 per page</span></div>
-    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="The journal is ready for its first story" text="Publish an article in Pages CMS and it will appear here automatically. Every published article is included in this library, even when no decor category is selected." />}
+    <div class="archive-tools"><span class="archive-count">{articles.length} {articles.length === 1 ? 'article' : 'articles'} published</span><span class="archive-count">12 articles per page</span></div>
+    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="No articles have been published yet" text="There are currently no published articles in the library." />}
     <Pagination current={1} total={totalPages} basePath="/articles/" />
   </section>
 </BaseLayout>

@@ -1,20 +1,22 @@
 ---
 import Icon from './Icon.astro';
 import { interiorCategories, exteriorCategories } from '@/data/categories';
+import { site } from '@/data/site';
 ---
 <footer class="site-footer">
   <div class="footer-main container">
     <div class="footer-brand-column">
-      <a class="brand footer-brand" href="/" aria-label="mravenzo home"><span>mr</span>avenzo.</a>
-      <p>Thoughtful ideas for the spaces you live in and the places you grow.</p>
-      <a class="footer-contact" href="/contact/"><Icon name="mail" size={16} /> Get in touch</a>
+      <a class="brand footer-brand" href="/" aria-label="PawpawDecors home"><span class="brand-paw" aria-hidden="true">🐾</span><span class="brand-name">pawpawdecors</span></a>
+      <p>Independent ideas for cosier homes, greener corners and happier plant parents.</p>
+      <a class="footer-contact" href={`mailto:${site.contactEmail}`}><Icon name="mail" size={16} /> Contact admin</a>
     </div>
     <div class="footer-links-column">
       <h2>Explore</h2>
       <a href="/articles/">All articles</a>
       <a href="/interior-decor/">Interior decor</a>
-      <a href="/exterior-decor/">Exterior decor</a>
+      <a href="/exterior-decor/">Garden & outdoor</a>
       <a href="/categories/">All topics</a>
+      <a href="/author/">About the author</a>
     </div>
     <div class="footer-links-column">
       <h2>Inside</h2>
@@ -25,11 +27,15 @@ import { interiorCategories, exteriorCategories } from '@/data/categories';
       {exteriorCategories.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}
     </div>
   </div>
+  <div class="footer-note container">
+    Some articles may contain affiliate links. PawpawDecors may earn a commission from qualifying purchases at no extra cost to you. Read our <a href="/editorial-policy/">Editorial Policy</a>.
+  </div>
   <div class="footer-bottom container">
-    <span>© {new Date().getFullYear()} mravenzo. All rights reserved.</span>
+    <span>© {new Date().getFullYear()} PawpawDecors. All rights reserved.</span>
     <div class="footer-legal">
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>
+      <a href="/guest-posting/">Guest posting</a>
       <a href="/cookies/">Cookies</a>
       <a href="/editorial-policy/">Editorial policy</a>
       <a href="/privacy-policy/">Privacy</a>

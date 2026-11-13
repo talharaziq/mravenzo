@@ -7,19 +7,31 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import { interiorCategories } from '@/data/categories';
 import { getPublishedArticles, belongsToGroup } from '@/utils/content';
 import { site } from '@/data/site';
+
 const pageSize = 12;
 const articles = (await getPublishedArticles()).filter((article) => belongsToGroup(article, 'interior'));
 const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
 const pageArticles = articles.slice(0, pageSize);
-const structuredData = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Interior Decor', description: 'Interior decor and room styling ideas for home decor, bedrooms, kitchens and balconies.', url: `${site.url}/interior-decor/` };
+const description = 'Explore interior decor ideas for bedrooms, kitchens and balconies, with practical room styling tips and welcoming details.';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Interior Decor',
+  description,
+  url: `${site.url}/interior-decor/`,
+};
 ---
-<BaseLayout title="Interior Decor Ideas & Room Inspiration | mravenzo." description="Explore interior decor ideas for home decor, bedrooms, kitchens and balconies. Practical styling inspiration for a thoughtful home." keywords="interior decor, home decor, bedroom decor, kitchen decor, balcony decor" structuredData={structuredData}>
+<BaseLayout title="Interior Decor Ideas & Room Inspiration | PawpawDecors" description={description} structuredData={structuredData}>
   <section class="page-shell container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Interior Decor' }]} />
-    <header class="archive-intro"><span class="eyebrow">Inside the home</span><h1>Interior decor, with feeling.</h1><p>Thoughtful ideas for the rooms you live in every day. Explore styling, colours, useful details and small changes that make a home feel more like yours.</p></header>
+    <header class="archive-intro">
+      <span class="eyebrow">Inside the home</span>
+      <h1>Interior decor, with feeling.</h1>
+      <p>Thoughtful ideas for the rooms you live in every day. Explore colours, materials, storage and small changes that make a home feel more like yours.</p>
+    </header>
     <div class="category-quick-links">{interiorCategories.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}</div>
     <div class="archive-tools"><span class="archive-count">{articles.length} interior {articles.length === 1 ? 'article' : 'articles'}</span><span class="archive-count">12 articles per page</span></div>
-    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="Interior stories are on their way" text="Choose a room above or publish an article and turn on one or more interior category switches in Pages CMS." />}
+    {pageArticles.length > 0 ? <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="No interior decor articles yet" text="Browse all articles for more home, garden and plant inspiration." />}
     <Pagination current={1} total={totalPages} basePath="/interior-decor/" />
   </section>
 </BaseLayout>

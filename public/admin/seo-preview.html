@@ -4,39 +4,74 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>mravenzo. — SEO & social preview tool</title>
+  <title>PawpawDecors — SEO & Social Preview</title>
   <style>
-    :root{font-family:Arial,sans-serif;color:#242321;background:#fbfaf7;--red:#c93337;--line:#e9e5de;--muted:#77736d}*{box-sizing:border-box}body{margin:0;padding:35px 20px}.wrap{width:min(980px,100%);margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-size:25px;font-weight:800;letter-spacing:-1.8px;text-decoration:none;color:inherit}.brand span{color:var(--red)}.back{font-size:12px;color:var(--red);text-decoration:none}h1{margin:34px 0 8px;font:500 40px Georgia,serif;letter-spacing:-1px}.intro{margin:0 0 28px;color:#625f5a;font-size:14px;line-height:1.7}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{padding:22px;border:1px solid var(--line);border-radius:8px;background:#fff}.panel h2{margin:0 0 18px;font-size:15px}.field{display:grid;gap:7px;margin-bottom:15px}.field label{font-size:11px;font-weight:700}.field input,.field textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:5px;background:#fff;font:13px Arial,sans-serif;color:#242321}.field textarea{min-height:78px;resize:vertical}.counter{color:var(--muted);font-size:10px}.preview-label{margin:0 0 9px;color:#89847d;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.google{max-width:600px;margin-bottom:24px;padding:18px 0}.google-site{display:flex;align-items:center;gap:9px;color:#3c4043;font-size:12px}.favicon{width:22px;height:22px;border:1px solid #eee;border-radius:50%;background:#fbfaf7;display:grid;place-items:center;color:var(--red);font-weight:700}.google-url{margin-top:4px;color:#5f6368;font-size:11px}.google-title{display:block;margin-top:7px;color:#1a0dab;font-size:20px;line-height:1.3}.google-desc{margin:6px 0 0;color:#4d5156;font-size:13px;line-height:1.55}.social{overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#fff}.social img{width:100%;height:190px;object-fit:cover;background:#f3f0eb}.social-copy{padding:12px 14px}.social-domain{color:#888;font-size:10px;text-transform:uppercase}.social-title{display:block;margin:6px 0;color:#242321;font-size:15px;font-weight:700;line-height:1.35}.social-desc{margin:0;color:#625f5a;font-size:12px;line-height:1.5}.hint{margin:20px 0 0;color:var(--muted);font-size:11px;line-height:1.7}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:19px}.button{padding:11px 15px;border:0;border-radius:4px;background:var(--red);color:#fff;font-size:12px;font-weight:700;cursor:pointer}.button.secondary{border:1px solid var(--line);background:#fff;color:#242321}.copy-status{align-self:center;color:var(--muted);font-size:11px}@media(max-width:740px){.grid{grid-template-columns:1fr}h1{font-size:34px}.top{align-items:flex-start;flex-direction:column}.social img{height:160px}}
+    :root{font-family:Arial,sans-serif;color:#42353a;background:#fffafa;--pink:#cf7894;--line:#f0dfe3;--muted:#86747b}
+    *{box-sizing:border-box}
+    body{margin:0;padding:35px 20px}
+    .wrap{width:min(980px,100%);margin:auto}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:15px}
+    .brand{display:inline-flex;align-items:center;gap:7px;font-size:23px;font-weight:800;letter-spacing:-1px;text-decoration:none;color:inherit}
+    .back{font-size:12px;color:var(--pink);text-decoration:none}
+    h1{margin:34px 0 8px;font:500 40px Georgia,serif;letter-spacing:-1px}
+    .intro{margin:0 0 28px;color:#75636a;font-size:14px;line-height:1.7}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .panel{padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff}
+    .panel h2{margin:0 0 18px;font-size:15px}
+    .field{display:grid;gap:7px;margin-bottom:15px}
+    .field label{font-size:11px;font-weight:700}
+    .field input,.field textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;font:13px Arial,sans-serif;color:#42353a}
+    .field textarea{min-height:78px;resize:vertical}
+    .counter{color:var(--muted);font-size:10px}
+    .preview-label{margin:0 0 9px;color:#89847d;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .google{max-width:600px;margin-bottom:24px;padding:18px 0}
+    .google-site{display:flex;align-items:center;gap:9px;color:#3c4043;font-size:12px}
+    .favicon{width:22px;height:22px;border:1px solid #eee;border-radius:50%;background:#fff0f3;display:grid;place-items:center}
+    .google-url{margin-top:4px;color:#5f6368;font-size:11px}
+    .google-title{display:block;margin-top:7px;color:#1a0dab;font-size:20px;line-height:1.3}
+    .google-desc{margin:6px 0 0;color:#4d5156;font-size:13px;line-height:1.55}
+    .social{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .social img{width:100%;height:190px;object-fit:cover;background:#f3f0eb}
+    .social-copy{padding:12px 14px}
+    .social-domain{color:#888;font-size:10px;text-transform:uppercase}
+    .social-title{display:block;margin:6px 0;color:#42353a;font-size:15px;font-weight:700;line-height:1.35}
+    .social-desc{margin:0;color:#75636a;font-size:12px;line-height:1.5}
+    .hint{margin:20px 0 0;color:var(--muted);font-size:11px;line-height:1.7}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:19px}
+    .button{padding:11px 15px;border:0;border-radius:99px;background:var(--pink);color:#fff;font-size:12px;font-weight:700;cursor:pointer}
+    .button.secondary{border:1px solid var(--line);background:#fff;color:#42353a}
+    .copy-status{align-self:center;color:var(--muted);font-size:11px}
+    @media(max-width:740px){.grid{grid-template-columns:1fr}h1{font-size:34px}.top{align-items:flex-start;flex-direction:column}.social img{height:160px}}
   </style>
 </head>
 <body>
   <main class="wrap">
-    <div class="top"><a class="brand" href="/"><span>mr</span>avenzo.</a><a class="back" href="/admin/">← Content studio</a></div>
+    <div class="top"><a class="brand" href="/"><span aria-hidden="true">🐾</span>pawpawdecors</a><a class="back" href="/admin/">← Content studio</a></div>
     <h1>Search & social preview</h1>
-    <p class="intro">Paste the SEO and social fields from Pages CMS to check how the page title, description and image fit before publishing. This tool previews the text you enter; it does not save changes back to the CMS.</p>
+    <p class="intro">Check how a page title, description and social image fit before publishing. This is a visual preview; Google and social platforms choose their own final presentation.</p>
     <div class="grid">
       <section class="panel">
         <h2>Preview details</h2>
-        <div class="field"><label for="title">SEO / social title</label><input id="title" maxlength="90" placeholder="Your article title"><span class="counter" id="title-count">0 / 60 recommended</span></div>
-        <div class="field"><label for="url">Canonical page URL</label><input id="url" placeholder="https://mravenzo.com/articles/your-slug/"></div>
-        <div class="field"><label for="description">Meta description</label><textarea id="description" maxlength="320" placeholder="A short, useful summary of this page."></textarea><span class="counter" id="description-count">0 / 160 recommended</span></div>
-        <div class="field"><label for="image">Social image URL</label><input id="image" placeholder="https://mravenzo.com/images/uploads/your-image.webp"></div>
+        <div class="field"><label for="title">SEO / social title</label><input id="title" maxlength="90" placeholder="Page title"><span class="counter" id="title-count">0 / 60 guide</span></div>
+        <div class="field"><label for="url">Canonical page URL</label><input id="url" placeholder="https://pawpawdecors.com/articles/example/"></div>
+        <div class="field"><label for="description">Meta description</label><textarea id="description" maxlength="320" placeholder="A useful summary of this page."></textarea><span class="counter" id="description-count">0 / 160 guide</span></div>
+        <div class="field"><label for="image">Social image URL</label><input id="image" placeholder="https://pawpawdecors.com/images/your-image.webp"></div>
         <div class="actions"><button class="button" id="copy-title" type="button">Copy title</button><button class="button secondary" id="copy-description" type="button">Copy description</button><span class="copy-status" id="copy-status" aria-live="polite"></span></div>
-        <p class="hint">The focus keyword and related keywords belong in their own CMS fields. Use the target phrase naturally in the title, introduction, headings and description where it fits. Do not repeat it just to increase a score.</p>
+        <p class="hint">Use the focus keyword naturally where it fits the subject. Avoid repeating phrases to reach a target count.</p>
       </section>
       <section class="panel">
         <h2>Live previews</h2>
         <p class="preview-label">Google-style search snippet</p>
         <div class="google">
-          <div class="google-site"><span class="favicon">m.</span><span id="google-domain">mravenzo.com</span></div>
-          <div class="google-url" id="google-url">https://mravenzo.com/your-page/</div>
-          <a href="#" class="google-title" id="google-title">Your page title will appear here</a>
-          <p class="google-desc" id="google-description">Your meta description will appear here. Keep it clear, specific and useful to someone deciding whether to click.</p>
+          <div class="google-site"><span class="favicon">🐾</span><span id="google-domain">pawpawdecors.com</span></div>
+          <div class="google-url" id="google-url">https://pawpawdecors.com/</div>
+          <a href="#" class="google-title" id="google-title">PawpawDecors article title</a>
+          <p class="google-desc" id="google-description">A clear summary of the page appears here.</p>
         </div>
         <p class="preview-label">Social card preview</p>
         <div class="social">
-          <img id="social-image" src="/images/mravenzo-social-card.svg" alt="Social preview image" onerror="this.src='/images/mravenzo-social-card.svg'">
-          <div class="social-copy"><div class="social-domain" id="social-domain">mravenzo.com</div><a class="social-title" id="social-title" href="#">Your page title will appear here</a><p class="social-desc" id="social-description">Your social sharing description will appear here.</p></div>
+          <img id="social-image" src="/images/pawpawdecors-social-card.svg" alt="PawpawDecors social preview image">
+          <div class="social-copy"><div class="social-domain" id="social-domain">pawpawdecors.com</div><a class="social-title" id="social-title" href="#">PawpawDecors article title</a><p class="social-desc" id="social-description">A short summary for social sharing.</p></div>
         </div>
       </section>
     </div>

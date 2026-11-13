@@ -1,8 +1,9 @@
 ---
-const { title = 'A little room for what’s next', text = 'New stories will appear here as they are published.' } = Astro.props;
+const { title = 'No articles in this collection yet', text = 'Browse the full article library for more home, garden and plant ideas.' } = Astro.props;
 ---
 <div class="empty-state">
-  <span class="empty-state-mark" aria-hidden="true">m.</span>
+  <span class="empty-state-mark" aria-hidden="true">🐾</span>
   <h3>{title}</h3>
   <p>{text}</p>
+  <a class="text-link" href="/articles/">Browse all articles →</a>
 </div>

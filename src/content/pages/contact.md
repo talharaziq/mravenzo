@@ -1,16 +1,19 @@
 ---
 slug: contact
-title: Contact
-description: Contact mravenzo. for editorial questions, corrections, partnerships and general feedback.
+title: Contact PawpawDecors
+description: Contact the PawpawDecors admin about article corrections, editorial questions, collaborations or website feedback.
 published: true
 seo:
-  title: Contact mravenzo. | Home & Garden Editorial
-  description: Get in touch with mravenzo. for editorial questions, corrections, partnerships or general feedback.
+  title: Contact PawpawDecors | Editorial Questions & Feedback
+  description: Email the PawpawDecors admin about article corrections, plant-care questions, editorial feedback and relevant collaboration enquiries.
+  focusKeyword: contact PawpawDecors
   index: true
   follow: true
   schemaType: ContactPage
 ---
 
-We welcome thoughtful questions, corrections and ideas for future coverage.
+Have a question about an article, noticed something that needs correcting, or want to suggest a topic? You are welcome to get in touch.
 
-For editorial feedback, collaboration enquiries or questions about the site, use the email button below. It will open a new message in your email app.
+PawpawDecors is managed by Talha Raziq. For editorial feedback, corrections, collaboration enquiries or general questions, email the admin at **[talharaziq@outlook.com](mailto:talharaziq@outlook.com)**.
+
+Please include the article URL when writing about a specific page. For guest article pitches, see the [Guest Posting page](/guest-posting/).

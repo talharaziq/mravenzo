@@ -10,6 +10,7 @@ export async function getStaticPaths() {
   const articles = await getPublishedArticles();
   return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
 }
+
 const { article } = Astro.props;
 const { Content } = await render(article);
 const data = article.data;
@@ -29,9 +30,18 @@ const schema = {
   image: image.startsWith('http') ? image : new URL(image, site.url).toString(),
   datePublished: data.publishDate?.toISOString(),
   dateModified: modified?.toISOString(),
-  author: { '@type': data.author && data.author !== site.author ? 'Person' : 'Organization', name: data.author || site.author },
-  publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${site.url}/favicon.svg` } },
+  author: {
+    '@type': 'Person',
+    name: site.author,
+    url: `${site.url}/author/`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    logo: { '@type': 'ImageObject', url: `${site.url}/favicon.svg` },
+  },
   mainEntityOfPage: `${site.url}${articleUrl(article)}`,
+  articleSection: categoryList.map((category) => category.title),
   timeRequired: `PT${readingTime}M`,
 };
 const breadcrumbSchema = {
@@ -48,7 +58,7 @@ const related = allArticles.filter((item) => item.id !== article.id && categoryL
 const robots = `${data.seo?.index === false ? 'noindex' : 'index'},${data.seo?.follow === false ? 'nofollow' : 'follow'},max-image-preview:large`;
 ---
 <BaseLayout
-  title={`${title} | mravenzo.`}
+  title={`${title} | ${site.name}`}
   description={description}
   canonical={data.seo?.canonicalUrl || undefined}
   image={image}
@@ -60,8 +70,7 @@ const robots = `${data.seo?.index === false ? 'noindex' : 'index'},${data.seo?.f
   twitterDescription={data.seo?.twitterDescription || data.seo?.ogDescription || description}
   twitterImage={data.seo?.twitterImage || image}
   ogType="article"
-  keywords={[data.seo?.focusKeyword, ...(data.seo?.secondaryKeywords || [])].filter(Boolean).join(', ')}
-  author={data.author || site.author}
+  author={site.author}
   publishedTime={data.publishDate?.toISOString()}
   modifiedTime={modified?.toISOString()}
   robots={robots}
@@ -79,11 +88,16 @@ const robots = `${data.seo?.index === false ? 'noindex' : 'index'},${data.seo?.f
           <h1>{data.title}</h1>
           {data.excerpt && <p class="article-deck">{data.excerpt}</p>}
           <div class="article-byline">
-            <span>By {data.author || site.author}</span>
-            <span><span aria-hidden="true">·</span><span> <span aria-hidden="true">◷</span> {readingTime} min read</span></span>
+            <span>By <a href="/author/">{site.author}</a></span>
+            <span><span aria-hidden="true">·</span> {readingTime} min read</span>
             {data.updatedDate && <span>Updated {formatDate(data.updatedDate)}</span>}
           </div>
         </header>
+        {data.affiliateLinks && (
+          <p class="article-commercial-note">
+            This article contains affiliate links. If you buy through one of these links, PawpawDecors may earn a commission at no extra cost to you. Recommendations remain editorial.
+          </p>
+        )}
         {data.featuredImage && (
           <figure class="article-hero-image">
             <img src={data.featuredImage} alt={data.featuredImageAlt || data.title} title={data.featuredImageTitle || undefined} width="1400" height="900" fetchpriority="high" />
@@ -102,9 +116,10 @@ const robots = `${data.seo?.index === false ? 'noindex' : 'index'},${data.seo?.f
       </div>
       <aside class="article-aside">
         <div class="aside-note">
-          <span class="eyebrow">A note from mravenzo.</span>
+          <span class="eyebrow">A note from PawpawDecors</span>
           <h2>Make it your own.</h2>
-          <p>Good spaces are personal. Take an idea, adapt it to your home and let the details feel like you.</p>
+          <p>Try what suits your home, climate and routine. The best ideas are the ones that work in your own space.</p>
+          <a href="/author/">Meet the author</a>
         </div>
       </aside>
     </div>

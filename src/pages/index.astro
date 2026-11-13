@@ -3,43 +3,91 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Icon from '@/components/Icon.astro';
 import CategoryCard from '@/components/CategoryCard.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
-import EmptyState from '@/components/EmptyState.astro';
 import { categories } from '@/data/categories';
 import { getPublishedArticles } from '@/utils/content';
 import { site } from '@/data/site';
+
 const articles = await getPublishedArticles();
-const featured = articles.filter((article) => article.data.featured).sort((a, b) => a.data.featuredOrder - b.data.featuredOrder).slice(0, 4);
+const featured = articles.filter((article) => article.data.featured).slice(0, 4);
 const recent = articles.slice(0, 7);
-const structuredData = { '@context': 'https://schema.org', '@type': 'Organization', name: site.name, url: site.url, logo: `${site.url}/favicon.svg`, description: site.description };
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.url,
+  logo: `${site.url}/favicon.svg`,
+  description: site.description,
+  founder: { '@type': 'Person', name: site.author, url: `${site.url}/author/` },
+};
 ---
-<BaseLayout title="mravenzo. — Home Decor & Garden Inspiration" description="Thoughtful home decor and garden ideas for rooms, balconies, patios and outdoor spaces. Find practical inspiration for a home that feels like yours." keywords="home decor ideas, interior decor, exterior decor, garden decor, bedroom decor, kitchen decor, outdoor living" structuredData={structuredData}>
+<BaseLayout
+  title="PawpawDecors | Home Decor, Garden Ideas & Plant Care"
+  description="Fresh ideas for home styling, garden decor and everyday plant care, with practical guides for creating welcoming spaces indoors and out."
+  structuredData={structuredData}
+>
   <section class="home-hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow">A little inspiration for every space</span>
-        <h1>Make room for a life you <em>love.</em></h1>
-        <p>Ideas for thoughtful interiors and inviting outdoor spaces. Find the details, colours and finishing touches that make a place feel like yours.</p>
-        <div class="hero-actions"><a class="button" href="/articles/">Explore articles <Icon name="arrow-right" size={17} /></a><a class="button button-outline" href="/categories/">Browse topics</a></div>
-        <div class="hero-note"><span></span> Home decor · Garden decor · Everyday inspiration</div>
+        <span class="eyebrow">Little ideas for lovely spaces</span>
+        <h1>Make yourself at <em>home.</em></h1>
+        <p>Find thoughtful decor inspiration, easy garden ideas and friendly plant-care guides for the spaces you love.</p>
+        <div class="hero-actions">
+          <a class="button" href="/articles/">Explore the journal <Icon name="arrow-right" size={17} /></a>
+          <a class="button button-outline" href="/categories/">Browse topics</a>
+        </div>
+        <div class="hero-note"><span></span> Home decor · Gardens · Plant care</div>
       </div>
       <div class="hero-art-wrap">
-        <img class="hero-art" src="/images/mravenzo-hero.svg" width="1440" height="1120" alt="Illustrated warm neutral living room with a curved sofa, natural materials, plants and soft daylight" fetchpriority="high" />
-        <div class="hero-art-caption"><strong>Spaces with feeling.</strong><span>Thoughtful details make a house feel like home.</span></div>
-        <span class="hero-vertical-note">THE ART OF LIVING WELL</span>
+        <img class="hero-art" src="/images/pawpawdecors-hero.svg" width="1440" height="1120" alt="A softly illustrated home corner with a leafy indoor plant, warm furniture and gentle pink details" fetchpriority="high" />
+        <div class="hero-art-caption"><strong>Make room to grow.</strong><span>Small details can make a home feel like yours.</span></div>
+        <span class="hero-vertical-note">HOME · GARDEN · PLANTS</span>
       </div>
     </div>
   </section>
+
   <section class="topics-section container" aria-labelledby="topics-title">
-    <div class="section-heading"><div><span class="eyebrow">Find your corner</span><h2 id="topics-title">Explore topics</h2><p>Start with a room, a corner or a little patch of green.</p></div><a class="text-link" href="/categories/">All topics <Icon name="arrow-right" size={16} /></a></div>
+    <div class="section-heading">
+      <div><span class="eyebrow">Find your corner</span><h2 id="topics-title">Explore topics</h2><p>Choose a room, a little outdoor space or a patch of green.</p></div>
+      <a class="text-link" href="/categories/">All topics <Icon name="arrow-right" size={16} /></a>
+    </div>
     <div class="topics-grid">{categories.map((category, index) => <CategoryCard category={category} number={String(index + 1).padStart(2, '0')} />)}</div>
   </section>
-  <section class="featured-section" aria-labelledby="featured-title"><div class="container">
-    <div class="section-heading"><div><span class="eyebrow">The editor’s selection</span><h2 id="featured-title">Featured articles</h2><p>Four stories selected to start you somewhere good.</p></div><a class="text-link" href="/articles/">View all articles <Icon name="arrow-right" size={16} /></a></div>
-    {featured.length > 0 ? <div class="featured-grid">{featured.map((article) => <ArticleCard article={article} variant="featured" />)}</div> : <EmptyState title="Your featured stories will live here" text="In the CMS, publish an article and switch on Featured to add it to this selection. The four highest-priority featured stories will appear here." />}
-  </div></section>
-  <section class="recent-section container" aria-labelledby="recent-title">
-    <div class="section-heading"><div><span class="eyebrow">Fresh from the journal</span><h2 id="recent-title">Recently published</h2><p>New ideas and useful details for your next home or garden project.</p></div><a class="text-link" href="/articles/">Browse the library <Icon name="arrow-right" size={16} /></a></div>
-    {recent.length > 0 ? <div class="recent-grid">{recent.map((article) => <ArticleCard article={article} />)}</div> : <EmptyState title="Your latest ideas will appear here" text="Newly published articles will be listed here automatically, with the seven most recent stories shown on the homepage." />}
+
+  {featured.length > 0 && (
+    <section class="featured-section" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><span class="eyebrow">A few favourites</span><h2 id="featured-title">Featured articles</h2><p>Four hand-picked reads to help you find your next idea.</p></div>
+          <a class="text-link" href="/articles/">View all articles <Icon name="arrow-right" size={16} /></a>
+        </div>
+        <div class="featured-carousel" data-featured-carousel>
+          <div class="featured-track" data-featured-track tabindex="0" aria-label="Featured articles">
+            {featured.map((article) => <ArticleCard article={article} variant="featured" />)}
+          </div>
+          <div class="featured-controls">
+            <span class="featured-counter" data-featured-counter>01 / {String(featured.length).padStart(2, '0')}</span>
+            <button class="featured-arrow" type="button" data-featured-prev aria-label="Show previous featured article" disabled={featured.length < 2}>‹</button>
+            <button class="featured-arrow" type="button" data-featured-next aria-label="Show next featured article" disabled={featured.length < 2}>›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {recent.length > 0 && (
+    <section class="recent-section container" aria-labelledby="recent-title">
+      <div class="section-heading">
+        <div><span class="eyebrow">Fresh from the journal</span><h2 id="recent-title">Recently published</h2><p>New guides and ideas, in the order they were published.</p></div>
+        <a class="text-link" href="/articles/">Browse all articles <Icon name="arrow-right" size={16} /></a>
+      </div>
+      <div class="recent-grid">{recent.map((article) => <ArticleCard article={article} />)}</div>
+    </section>
+  )}
+
+  <section class="home-close container">
+    <div class="home-close-inner">
+      <div class="home-close-copy"><span class="eyebrow">A little more green</span><h2>There is always room for one more plant.</h2></div>
+      <a class="button" href="/exterior-decor/">Explore garden ideas <Icon name="arrow-right" size={16} /></a>
+    </div>
   </section>
-  <section class="home-close container"><div class="home-close-inner"><div class="home-close-copy"><span class="eyebrow">A home that feels like yours</span><h2>Good ideas start with a space you want to spend time in.</h2></div><a class="button" href="/interior-decor/">Explore interior decor <Icon name="arrow-right" size={16} /></a></div></section>
 </BaseLayout>

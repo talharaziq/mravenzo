@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fff7f6"/>
+  <circle cx="1030" cy="100" r="285" fill="#f7dce4"/>
+  <circle cx="1070" cy="640" r="300" fill="#dfe9d8"/>
+  <circle cx="170" cy="560" r="230" fill="#f8e7dc"/>
+  <g fill="#cf7894" transform="translate(90 115)">
+    <ellipse cx="25" cy="22" rx="15" ry="21" transform="rotate(-25 25 22)"/>
+    <ellipse cx="61" cy="4" rx="15" ry="21" transform="rotate(-8 61 4)"/>
+    <ellipse cx="99" cy="22" rx="15" ry="21" transform="rotate(25 99 22)"/>
+    <ellipse cx="120" cy="59" rx="14" ry="18" transform="rotate(48 120 59)"/>
+    <path d="M62 47c-15 0-27 18-37 38-10 21 0 39 22 39 9 0 15-5 21-5s12 5 21 5c22 0 32-18 22-39-10-20-24-38-39-38Z"/>
+  </g>
+  <text x="90" y="345" fill="#45343b" font-family="Arial,sans-serif" font-size="68" font-weight="700" letter-spacing="-3">pawpawdecors</text>
+  <text x="94" y="415" fill="#79636d" font-family="Georgia,serif" font-size="39">Little ideas for lovely homes</text>
+  <text x="94" y="471" fill="#79636d" font-family="Georgia,serif" font-size="39" font-style="italic">and greener corners.</text>
+  <path d="M94 520h125" stroke="#cf7894" stroke-width="5" stroke-linecap="round"/>
+  <text x="94" y="567" fill="#8b7a80" font-family="Arial,sans-serif" font-size="18" letter-spacing="4">HOME · GARDEN · PLANT CARE</text>
+</svg>

@@ -3,7 +3,7 @@ import Icon from './Icon.astro';
 import { interiorCategories, exteriorCategories } from '@/data/categories';
 const path = Astro.url.pathname;
 const homeActive = path === '/';
-const articlesActive = path.startsWith('/articles/') || path === '/articles/';
+const articlesActive = path.startsWith('/articles/');
 const interiorActive = path.startsWith('/interior-decor/') || interiorCategories.some((item) => path.startsWith(`/category/${item.slug}/`));
 const exteriorActive = path.startsWith('/exterior-decor/') || exteriorCategories.some((item) => path.startsWith(`/category/${item.slug}/`));
 const aboutActive = path === '/about/';
@@ -24,7 +24,7 @@ const aboutActive = path === '/about/';
         </div>
       </div>
       <div class:list={['nav-dropdown', { active: exteriorActive }]}>
-        <a class:list={['nav-link', { active: exteriorActive }]} href="/exterior-decor/" aria-haspopup="true">Exterior Decor</a>
+        <a class:list={['nav-link', { active: exteriorActive }]} href="/exterior-decor/" aria-haspopup="true">Garden & Outdoor</a>
         <div class="dropdown-panel">
           <span class="dropdown-heading">Beyond the walls</span>
           {exteriorCategories.map((category) => <a href={`/category/${category.slug}/`}>{category.title}</a>)}
@@ -41,7 +41,7 @@ const aboutActive = path === '/about/';
         <span class="theme-icon-dark"><Icon name="sunny" size={19} /></span>
       </button>
     </div>
-    <a class="brand" href="/" aria-label="mravenzo home"><span>mr</span>avenzo.</a>
+    <a class="brand" href="/" aria-label="PawpawDecors home"><span class="brand-paw" aria-hidden="true">🐾</span><span class="brand-name">pawpawdecors</span></a>
   </div>
   <div class="header-search" id="header-search" hidden>
     <form action="/search/" method="get" role="search">
@@ -49,6 +49,6 @@ const aboutActive = path === '/about/';
       <input type="search" name="q" placeholder="Search articles and topics…" aria-label="Search articles and topics" />
       <button type="submit">Search</button>
     </form>
-    <p>Search by room, garden space or idea.</p>
+    <p>Find ideas for your rooms, garden and plants.</p>
   </div>
 </header>

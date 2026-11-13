@@ -1,27 +1,33 @@
 ---
 import Icon from './Icon.astro';
-import { articleUrl, formatDate, getArticleCategories, getReadingTime } from '@/utils/content';
+import { articleUrl, getArticleCategories } from '@/utils/content';
 const { article, variant = 'standard' } = Astro.props;
 const category = getArticleCategories(article)[0];
 const image = article.data.featuredImage;
 const imageAlt = article.data.featuredImageAlt || article.data.title;
 const description = article.data.excerpt || article.data.seo?.description || '';
+const url = articleUrl(article);
 ---
-<article class={`article-card article-card--${variant}`}>
-  <a class="article-card-image" href={articleUrl(article)} aria-label={`Read ${article.data.title}`}>
-    {image ? <img src={image} alt={imageAlt} title={article.data.featuredImageTitle || undefined} width="1200" height="880" loading="lazy" decoding="async" /> : <div class="article-image-placeholder" aria-hidden="true"><Icon name={category?.icon || 'leaf'} size={34} /></div>}
-    {category && <span class="article-image-tag">{category.title}</span>}
-  </a>
-  <div class="article-card-content">
-    <div class="article-meta">
-      {category && <a href={`/category/${category.slug}/`}>{category.title}</a>}
-      {article.data.publishDate && <><span class="meta-dot">·</span><time datetime={article.data.publishDate.toISOString()}>{formatDate(article.data.publishDate)}</time></>}
+{variant === 'featured' ? (
+  <article class="featured-slide">
+    <a class="featured-slide-image" href={url} aria-label={`Read ${article.data.title}`}>
+      {image ? <img src={image} alt={imageAlt} width="1200" height="900" loading="lazy" decoding="async" /> : <span class="featured-image-fallback" aria-hidden="true">🌿</span>}
+    </a>
+    <div class="featured-slide-copy">
+      <span class="eyebrow">{category?.title || 'From the journal'}</span>
+      <h3><a href={url}>{article.data.title}</a></h3>
+      <p>{description}</p>
+      <a class="featured-read-link" href={url}>Read the story <Icon name="arrow-right" size={17} /></a>
     </div>
-    <h3><a href={articleUrl(article)}>{article.data.title}</a></h3>
-    {description && <p>{description}</p>}
-    <div class="article-card-bottom">
-      <span><Icon name="clock" size={14} /> {getReadingTime(article)} min read</span>
-      <a class="card-arrow" href={articleUrl(article)} aria-label={`Read ${article.data.title}`}><Icon name="arrow-up-right" size={18} /></a>
+  </article>
+) : (
+  <article class="article-card article-card--compact">
+    <a class="article-card-image" href={url} aria-label={`Read ${article.data.title}`}>
+      {image ? <img src={image} alt={imageAlt} title={article.data.featuredImageTitle || undefined} width="500" height="360" loading="lazy" decoding="async" /> : <span class="article-image-placeholder" aria-hidden="true">🐾</span>}
+    </a>
+    <div class="article-card-content">
+      <h3><a href={url}>{article.data.title}</a></h3>
+      <p>{description}</p>
     </div>
-  </div>
-</article>
+  </article>
+)}

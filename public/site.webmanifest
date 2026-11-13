@@ -1,9 +1,15 @@
 {
-  "name": "mravenzo.",
-  "short_name": "mravenzo.",
+  "name": "pawpawdecors",
+  "short_name": "pawpawdecors",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fbfaf7",
-  "theme_color": "#fbfaf7",
-  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+  "background_color": "#fffafa",
+  "theme_color": "#fff7f7",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
 }

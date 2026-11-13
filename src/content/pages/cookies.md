@@ -1,33 +1,39 @@
 ---
 slug: cookies
 title: Cookie Policy
-description: Learn how mravenzo. uses cookies and similar browser technologies.
+description: How PawpawDecors uses browser storage, cookies and similar technologies, including technologies used by third-party services.
 published: true
 seo:
-  title: Cookie Policy | mravenzo.
-  description: Find out how mravenzo. uses cookies and browser storage to support site preferences and operation.
-  focusKeyword: mravenzo cookie policy
+  title: Cookie Policy | PawpawDecors
+  description: Read how PawpawDecors uses local browser storage and how third-party services, including advertising partners, may use cookies.
+  focusKeyword: PawpawDecors cookie policy
   index: true
   follow: true
   schemaType: WebPage
 ---
 
-## Cookies and browser storage
+*Last updated: 13 November 2026*
 
-Cookies are small files that websites can store in your browser. mravenzo. currently uses browser local storage to remember your light or dark theme preference. This setting stays in your browser and is not a cookie.
+## What cookies are
 
-## Analytics and advertising
+Cookies are small text files that a website or a third-party service can store in a browser. Similar technologies include local storage, pixels and scripts that remember settings or measure activity.
 
-The site does not currently include its own analytics or advertising scripts. If this changes, this policy will be updated to explain the technologies involved and the choices available to visitors.
+## What this website stores
 
-## Third-party services
+PawpawDecors currently uses browser local storage to remember a visitor's light or dark theme preference. This preference stays in that browser. It is not used to identify you and is not a site account.
 
-The website uses third-party services to deliver parts of the site, such as its web fonts and hosting. Those providers may process technical information under their own policies. Their use of cookies or similar technologies is governed by the providers' terms and privacy information.
+The website also loads fonts from Google Fonts. A browser request to a third-party service can share standard technical information, such as an IP address and browser details, with that provider.
 
-## Managing cookies and storage
+## Advertising and affiliate links
 
-You can manage or delete cookies and local storage through your browser settings. Clearing local storage will remove the saved theme preference; the site will return to its default light theme until you choose another one.
+When advertising is enabled, Google AdSense and its advertising partners may use cookies or similar technologies to serve ads, limit repeated ads, measure performance or personalise advertising where permitted. You can review Google's information about [advertising technologies](https://policies.google.com/technologies/ads) and manage personalisation through [Google Ads Settings](https://adssettings.google.com/).
+
+Some articles may contain affiliate links. An affiliate partner may use cookies or similar technologies to recognise that a visitor followed a link from PawpawDecors and to attribute a qualifying purchase. The partner's own privacy and cookie policy applies to its website.
+
+## Your choices
+
+You can block or delete cookies and clear local storage through your browser settings. Clearing local storage removes the saved theme preference. Blocking third-party cookies may affect how some advertising or embedded services work.
 
 ## Questions
 
-For questions about this policy, visit the [Contact page](/contact/) and use the email link there.
+For questions about this policy, contact the site admin at [talharaziq@outlook.com](mailto:talharaziq@outlook.com).

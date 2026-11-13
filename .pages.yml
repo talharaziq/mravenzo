@@ -26,17 +26,17 @@ content:
         label: Article title
         type: string
         required: true
-        description: Use a clear, specific title that describes the article.
+        description: Write a clear title that tells readers what the article helps them do.
       - name: slug
         label: URL slug
         type: string
         required: true
-        description: Lowercase words separated by hyphens, for example small-balcony-decor. This also names the Markdown file.
+        description: Lowercase words separated by hyphens, for example small-balcony-garden.
       - name: excerpt
         label: Article excerpt
         type: text
         required: true
-        description: Short summary used on article cards and as the default meta description. Aim for 120–160 characters.
+        description: A concise, useful summary for article listings and search snippets. Aim for 120–160 characters.
       - name: publishDate
         label: Publish date
         type: date
@@ -51,36 +51,31 @@ content:
         options:
           time: true
           format: "yyyy-MM-dd'T'HH:mm"
-      - name: author
-        label: Author name
-        type: string
-        required: false
-        description: Defaults to the mravenzo. editorial team when left empty.
       - name: published
         label: Publish this article
         type: boolean
         default: false
-        description: Turn on when the article is ready. Unpublished items stay out of the public website.
+        description: Turn on when the article is ready for readers.
       - name: draft
         label: Keep as draft
         type: boolean
         default: false
-        description: Leave off for a published article. Draft articles never appear on the public site.
+        description: Draft articles do not appear on the public website.
       - name: featured
         label: Add to homepage featured articles
         type: boolean
         default: false
-        description: Turn on to include this story in the homepage Featured articles section. Only the first four are shown.
-      - name: featuredOrder
-        label: Featured order
-        type: number
-        default: 99
-        description: Lower numbers appear first. Use 1–4 to control the four homepage feature positions.
+        description: The homepage automatically displays the four newest published articles with this switch enabled.
+      - name: affiliateLinks
+        label: This article contains affiliate links
+        type: boolean
+        default: false
+        description: Turn on when this article contains affiliate links. A disclosure will appear above the article.
       - name: readingTime
         label: Reading time in minutes
         type: number
         required: false
-        description: Optional override. If blank, the site estimates reading time from the article text.
+        description: Optional override. If blank, reading time is estimated from the article text.
       - name: featuredImage
         label: Featured image
         type: image
@@ -93,26 +88,24 @@ content:
         label: Featured image — alt text
         type: string
         required: false
-        description: Describe what is visible in the image for screen readers. Avoid keyword stuffing.
+        description: Describe what is visible in the image. Do not fill this field with a list of keywords.
       - name: featuredImageTitle
         label: Featured image — title attribute
         type: string
         required: false
-        description: Optional short image title. This is separate from the alt text.
       - name: featuredImageCaption
         label: Featured image — caption
         type: text
         required: false
-        description: Optional caption displayed under the main article image. Include credit where needed.
       - name: featuredImageDescription
         label: Featured image — media description
         type: text
         required: false
-        description: Internal media-library note describing the image, its context or source.
+        description: Internal note about the image, its context, source or usage rights.
       - name: categories
         label: Category switches
         type: object
-        description: Turn on every category that fits. These are independent switches. Every published article appears on the Articles page even when all switches are off.
+        description: Select every topic that genuinely fits. Published articles remain in the main Articles library even when no category is selected.
         fields:
           - name: homeDecor
             label: Home Decor
@@ -151,33 +144,33 @@ content:
         type: string
         list: true
         required: false
-        description: Add a few precise supporting tags. Category switches control the main topic pages.
+        description: Add a small number of accurate supporting topics.
       - name: seo
-        label: SEO settings — Rank Math style
+        label: SEO settings
         type: object
-        description: Set a unique search snippet, target phrase, canonical URL and indexing rules for this article.
+        description: Add a distinct search title and summary that match the article's actual contents.
         fields:
           - name: title
             label: SEO title
             type: string
-            description: Search result title. A useful target is around 50–60 characters. Falls back to the article title.
+            description: Use a clear, accurate title. Around 50–60 characters is a useful guide, not a ranking rule.
           - name: description
             label: Meta description
             type: text
-            description: Write a specific summary, usually around 140–160 characters. Falls back to the article excerpt.
+            description: Summarise this specific page in natural language. Around 140–160 characters is a useful guide.
           - name: focusKeyword
             label: Focus keyword
             type: string
-            description: One primary search phrase this article is intended to answer.
+            description: The main search phrase this article directly answers.
           - name: secondaryKeywords
             label: Related keywords
             type: string
             list: true
-            description: Add close variants and related phrases naturally covered in the article.
+            description: Add close variants that are naturally covered in the article.
           - name: canonicalUrl
             label: Canonical URL override
             type: string
-            description: Leave blank to use this article's own URL. Only use an override when there is a genuine duplicate or preferred source URL.
+            description: Leave blank unless this page is a genuine duplicate with another preferred URL.
           - name: index
             label: Allow search indexing
             type: boolean
@@ -198,23 +191,21 @@ content:
           - name: ogTitle
             label: Open Graph title
             type: string
-            description: Facebook, LinkedIn and other social-card title. Falls back to the SEO title.
           - name: ogDescription
             label: Open Graph description
             type: text
-            description: Social sharing summary. Falls back to the meta description.
           - name: ogImage
             label: Open Graph image
             type: image
             options:
               media: images
               path: social
-              extensions: [jpg, jpeg, png, webp, avif]
+              extensions: [jpg, jpeg, png, webp, avif, svg]
           - name: ogImageAlt
             label: Open Graph image alt text
             type: string
           - name: twitterCard
-            label: X / Twitter card type
+            label: X card type
             type: select
             options:
               values:
@@ -223,18 +214,18 @@ content:
                 - name: summary
                   label: Small summary card
           - name: twitterTitle
-            label: X / Twitter title
+            label: X card title
             type: string
           - name: twitterDescription
-            label: X / Twitter description
+            label: X card description
             type: text
           - name: twitterImage
-            label: X / Twitter image
+            label: X card image
             type: image
             options:
               media: images
               path: social
-              extensions: [jpg, jpeg, png, webp, avif]
+              extensions: [jpg, jpeg, png, webp, avif, svg]
       - name: body
         label: Article content
         type: rich-text
@@ -258,7 +249,7 @@ content:
         label: URL slug
         type: string
         required: true
-        description: Use the existing page slug when editing a page, for example about, contact or editorial-policy.
+        description: Keep the existing slug when editing a page.
       - name: description
         label: Page introduction
         type: text
@@ -299,7 +290,7 @@ content:
             label: Structured data type
             type: select
             options:
-              values: [WebPage, AboutPage, ContactPage]
+              values: [WebPage, AboutPage, ContactPage, ProfilePage]
           - name: ogTitle
             label: Open Graph title
             type: string
@@ -312,26 +303,28 @@ content:
             options:
               media: images
               path: social
+              extensions: [jpg, jpeg, png, webp, avif, svg]
           - name: ogImageAlt
             label: Open Graph image alt text
             type: string
           - name: twitterCard
-            label: X / Twitter card type
+            label: X card type
             type: select
             options:
               values: [summary_large_image, summary]
           - name: twitterTitle
-            label: X / Twitter title
+            label: X card title
             type: string
           - name: twitterDescription
-            label: X / Twitter description
+            label: X card description
             type: text
           - name: twitterImage
-            label: X / Twitter image
+            label: X card image
             type: image
             options:
               media: images
               path: social
+              extensions: [jpg, jpeg, png, webp, avif, svg]
       - name: body
         label: Page content
         type: rich-text
@@ -354,7 +347,6 @@ content:
       - name: url
         label: Canonical website URL
         type: string
-        description: Update this to your final domain. Also update astro.config.mjs and public/robots.txt.
       - name: contactEmail
         label: Public contact email
         type: string
@@ -364,11 +356,9 @@ content:
         options:
           media: images
           path: social
+          extensions: [jpg, jpeg, png, webp, avif, svg]
       - name: locale
         label: Open Graph locale
-        type: string
-      - name: author
-        label: Default author name
         type: string
 
 settings:

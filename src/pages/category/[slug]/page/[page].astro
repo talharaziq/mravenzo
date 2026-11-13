@@ -5,9 +5,9 @@ import Pagination from '@/components/Pagination.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import { categories, type DecorCategory } from '@/data/categories';
 import { getPublishedArticles, belongsToCategory, type ArticleEntry } from '@/utils/content';
+
 const pageSize = 12;
 export async function getStaticPaths() {
-  const pageSize = 12;
   const allArticles = await getPublishedArticles();
   const routes: { params: { slug: string; page: string }; props: { category: DecorCategory; currentPage: number; articles: ArticleEntry[] } }[] = [];
   for (const category of categories) {
@@ -23,10 +23,18 @@ const { category, currentPage, articles } = Astro.props;
 const totalPages = Math.max(1, Math.ceil(articles.length / pageSize));
 const pageArticles = articles.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 ---
-<BaseLayout title={`${category.title} — Page ${currentPage} | mravenzo.`} description={`Page ${currentPage} of ${category.title.toLowerCase()} articles, ideas and inspiration from mravenzo.`} keywords={category.keyword}>
+<BaseLayout
+  title={`${category.title} — Page ${currentPage} | PawpawDecors`}
+  description={`Page ${currentPage} of PawpawDecors ${category.title.toLowerCase()} articles and practical ideas.`}
+  robots="noindex,follow"
+>
   <section class="page-shell container">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: category.title, href: `/category/${category.slug}/` }, { label: `Page ${currentPage}` }]} />
-    <header class="archive-intro"><span class="eyebrow">{category.group === 'interior' ? 'Inside the home' : 'Beyond the walls'}</span><h1>{category.title}</h1><p>{category.metaDescription}</p></header>
+    <header class="archive-intro">
+      <span class="eyebrow">{category.group === 'interior' ? 'Inside the home' : 'Garden & outdoor'}</span>
+      <h1>{category.title}</h1>
+      <p>{category.metaDescription}</p>
+    </header>
     <div class="archive-tools"><span class="archive-count">Page {currentPage} of {totalPages}</span><span class="archive-count">12 articles per page</span></div>
     <div class="archive-grid">{pageArticles.map((article) => <ArticleCard article={article} />)}</div>
     <Pagination current={currentPage} total={totalPages} basePath={`/category/${category.slug}/`} />

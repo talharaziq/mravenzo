@@ -1,18 +1,23 @@
 ---
 slug: about
-title: About mravenzo.
-description: A place for thoughtful home decor, garden ideas and the small details that make a space feel personal.
+title: About PawpawDecors
+description: An independently managed home, garden and plant journal with practical ideas for making everyday spaces feel more welcoming.
 published: true
 seo:
-  title: About mravenzo. | Home & Garden Inspiration
-  description: Meet mravenzo., an editorial home for thoughtful interior styling, garden decor and ideas for everyday spaces.
+  title: About PawpawDecors | Home, Garden & Plant Inspiration
+  description: Meet PawpawDecors, an independently managed journal sharing practical home decor ideas, gardening inspiration and plant-care guides.
+  focusKeyword: about PawpawDecors
   index: true
   follow: true
-  schemaType: WebPage
+  schemaType: AboutPage
 ---
 
-mravenzo. is a home and garden journal for people who care about the feeling of a space.
+PawpawDecors is an independently managed website about the spaces we live in and the plants we care for. It brings together home decor inspiration, garden ideas and approachable plant-care guides.
 
-We collect ideas for rooms, balconies, gardens and outdoor corners. The aim is simple: useful inspiration, clear advice and details you can adapt to your own home.
+The aim is to make useful information easier to find. You will find ideas for rooms, balconies, patios and outdoor corners, along with practical articles about growing and caring for plants. Advice is written to be clear and usable, with the understanding that homes, budgets, climates and routines differ.
 
-Our topics range from bedroom and kitchen styling to garden accents, patio living and outdoor lighting. As the journal grows, this page will tell you more about the people and process behind it.
+PawpawDecors is founded and run by **Talha Raziq**, who has a background in biotechnology and a personal interest in plants. He is the site's sole author and manages its editorial direction.
+
+The website is independent. It is not affiliated with a decorating retailer, plant nursery or product manufacturer. When an article contains an affiliate link, that relationship is disclosed in the article and explained in the [Editorial Policy](/editorial-policy/).
+
+For questions, corrections or suggestions, please visit the [Contact page](/contact/). You can also [read more about the founder](/author/).

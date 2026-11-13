@@ -1,30 +1,40 @@
-# mravenzo. — publishing & CMS guide
+# PawpawDecors — publishing guide
 
-This project uses [Pages CMS](https://app.pagescms.org/) as a Git-based editor. The `.pages.yml` file at the repository root defines the content form. Pages CMS writes Markdown and JSON files into the repository; a connected Cloudflare Pages project rebuilds the site after each Git commit.
+PawpawDecors uses [Pages CMS](https://app.pagescms.org/) as a Git-based content editor. The `.pages.yml` file defines the editing forms. Pages CMS saves articles and page changes in the repository; your hosting workflow rebuilds the static site after a commit.
 
 ## Create and publish an article
 
-1. Open Pages CMS and select the repository.
-2. Open **Articles** and create a new entry.
-3. Enter a title and a lowercase URL slug. Use hyphens between words, for example `small-balcony-decor`.
-4. Add a short excerpt. This is used on cards and as the fallback meta description.
-5. Set the publish date and author.
-6. Add the featured image and complete its image fields.
-7. Turn on each matching category switch. The switches are independent; one article can be in several categories.
-8. Write the article in the Article content editor.
-9. Complete the SEO and social fields.
-10. Keep **Keep as draft** on while preparing the story. When ready, switch **Keep as draft** off and **Publish this article** on, then save/commit.
+1. Open Pages CMS and select the PawpawDecors repository.
+2. Open **Articles** and create an entry.
+3. Add a clear title, a short URL slug and a useful excerpt.
+4. Set the publish date.
+5. Upload the featured image and describe it in the alt-text field.
+6. Select every category that genuinely fits the article.
+7. Write the article in the content editor and check headings, links and factual claims.
+8. Add a unique SEO title and meta description. Set the focus keyword and related terms only when they match the article.
+9. Turn on **Keep as draft** while the article is being prepared. When it is ready, turn draft off and **Publish this article** on.
 
-An article appears in the main **Articles** archive whenever `Publish this article` is on and `Keep as draft` is off. Category switches do not control whether it appears in the all-articles archive; they only control which topic archives include it. If all category switches are off, the article still appears in `/articles/`.
+Talha Raziq is the default author. Author details are supplied by the site and do not need to be entered for each article.
 
-## Homepage placement
+## Homepage featured carousel
 
-- **Featured**: turn on **Add to homepage featured articles** to include the story in the feature selection.
-- **Featured order**: use `1` through `4` to choose the display order. The homepage displays the first four published stories that have Featured enabled.
-- **Recently published**: the homepage automatically shows the seven newest published articles, based on Publish date.
-- If there are no featured or recent articles yet, the homepage displays an editorial empty state instead of fabricated content.
+Turn on **Add to homepage featured articles** for a published story to include it in the carousel. The carousel selects the four newest published articles with this setting enabled and orders them by publish date. You do not need to set a manual order. When another featured article is published, it takes the newest position and the fourth-oldest featured article drops out of the homepage selection.
 
-## Category switches
+## Recently published and article cards
+
+The homepage and article archives use compact horizontal article rows. Each row shows the featured image on the left, one line for the title and up to two lines for the excerpt. Longer text is clipped to keep the rows aligned.
+
+## Affiliate links
+
+When an article contains affiliate links, turn on **This article contains affiliate links**. A disclosure appears above the article content. Add a clear disclosure close to any commercial recommendation and mark affiliate links with `rel="sponsored"` where the editor supports link attributes. Do not present paid placements as independent recommendations.
+
+## Search metadata
+
+Use a distinct, accurate SEO title for each article and page. A title around 50–60 characters and a meta description around 140–160 characters are useful editorial guides, not strict ranking limits. Include the topic naturally in the title, introduction and relevant headings. Avoid repeating keywords unnaturally.
+
+Use the featured image alt field to describe the actual image for readers using assistive technology. Do not use it as a list of search terms. Use descriptive file names and upload only images you own or have permission to publish.
+
+## Categories
 
 | CMS switch | Category page |
 |---|---|
@@ -37,55 +47,10 @@ An article appears in the main **Articles** archive whenever `Publish this artic
 | Outdoor Lighting | `/category/outdoor-lighting/` |
 | Front Yard Decor | `/category/front-yard-decor/` |
 
-The Interior Decor and Exterior Decor navigation pages group the four interior and four exterior topics. Each category archive paginates after 12 matching stories.
+The Interior Decor and Garden & Outdoor navigation pages group their respective topics. Category archives paginate after 12 stories.
 
-## Featured image fields
+## Website pages and advertising
 
-| Field | Purpose |
-|---|---|
-| Featured image | Main image used on article cards and the article page. |
-| Alt text | A concise description for screen readers and image accessibility. Describe the image, not a string of keywords. |
-| Title attribute | Optional short title associated with the image. |
-| Caption | Visible text shown below the main article image. Add an image credit here when required. |
-| Media description | Internal note about the image, context, rights or source. It is editorial metadata and is not shown as article copy. |
+The Pages collection includes About, Author, Contact, Guest Posting, Cookie Policy, Editorial Policy, Privacy Policy and Terms of Use. Keep the existing slug when editing a page so its URL does not change.
 
-Use descriptive filenames, compress images before upload and prefer WebP/AVIF where supported. Keep text out of the image itself where possible. Upload only original, licensed or permission-cleared images.
-
-## SEO settings — Rank Math-style fields
-
-These fields are available for every article and CMS page.
-
-| Field | What it does / how to use it |
-|---|---|
-| SEO title | Page title used in the HTML title and search metadata. Write a distinct, accurate title; roughly 50–60 characters is a useful editorial target. |
-| Meta description | Search description. Summarise the page in natural language; roughly 140–160 characters is a useful target. Article excerpt is the fallback when this is blank. |
-| Focus keyword | One main query/topic the article is meant to answer. It is included in the keyword metadata and on-site search index. It is not a ranking switch. |
-| Related keywords | Add close variants and supporting phrases that the article genuinely covers. |
-| Canonical URL override | Leave blank for the article's own canonical URL. Use only when this page intentionally duplicates content available at a preferred URL. |
-| Allow search indexing | On = `index`; off = `noindex`. Turn off for pages that should not appear in search. |
-| Allow search engines to follow links | On = `follow`; off = `nofollow`. Use deliberately. |
-| Structured data type | Choose Article, BlogPosting or NewsArticle for articles; choose the closest page type for website pages. Only select NewsArticle for actual news-style reporting. |
-| Breadcrumb label override | Reserved editorial field for a shorter breadcrumb label. The visible breadcrumb currently uses the article title. |
-| Open Graph title | Title used when sharing to Facebook, LinkedIn and other compatible social platforms. Falls back to SEO title. |
-| Open Graph description | Social sharing description. Falls back to the meta description. |
-| Open Graph image | Image used for social previews. Falls back to the featured image and then the site default. |
-| Open Graph image alt text | Accessible description for the social image. |
-| X / Twitter card type | Choose a large image card or summary card. |
-| X / Twitter title | Optional title override for X/Twitter cards. |
-| X / Twitter description | Optional description override for X/Twitter cards. |
-| X / Twitter image | Optional image override for X/Twitter cards. |
-
-The site outputs title and description tags, canonical links, robots directives, Open Graph and X/Twitter metadata, JSON-LD structured data, a sitemap and an RSS feed. The shared layout emits WebSite data; article pages also emit Article/BlogPosting/NewsArticle data and breadcrumbs; content pages emit WebPage-style data.
-
-## Preview the Google/social snippet
-
-Open `/admin/seo-preview.html` on the deployed website, or open the file locally. Copy the relevant SEO title, description, canonical URL and social image path from Pages CMS into the preview fields. The tool shows a Google-style search snippet and a social-card mock-up. This is a visual helper only; it does not save back to CMS and does not reproduce the exact layout chosen by Google or each social network.
-
-## Website pages and site settings
-
-- **Website pages**: edit About, Contact, Cookies, Editorial Policy, Privacy Policy and Terms of Use. Keep the existing URL slug when editing an existing page.
-- **Site settings**: change website title/description, canonical website URL, public contact email, default social image, locale and author name.
-- Page structured-data choices are available in each page's SEO panel; article structured-data choices are available in each article's SEO panel. Leave the field unchanged to use the site's default.
-- Before using a custom domain, update the `site` value in `astro.config.mjs` and the sitemap URL in `public/robots.txt`. In Cloudflare Pages, set `NODE_VERSION` to `22.23.4` (or a newer supported Node 22 release).
-
-The Privacy Policy and Terms of Use are starter copy, not final legal advice. Review them to match your actual business, analytics, advertising, affiliate and privacy practices before publishing.
+Google AdSense code is not part of the repository because it needs the publisher's own account details. Before enabling advertising, ensure the site has substantial original content, clear navigation, working legal pages and any consent tools required for the locations where ads are served. No search or advertising service can promise approval or rankings.
