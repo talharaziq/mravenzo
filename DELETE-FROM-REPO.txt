@@ -1,4 +1,13 @@
-Delete these two unreferenced legacy image files from the GitHub repository. They are not needed by the PawpawDecors site and retain the old Mravenzo brand name:
+Delete these files from the repository after copying the updated files into place.
 
+Duplicate article source (keep src/content/articles/folding-table-guide.md):
+src/content/articles/folding-table-guide-1.md
+
+Unused legacy brand artwork (the current site uses PawpawDecors artwork):
 public/images/mravenzo-hero.svg
 public/images/mravenzo-social-card.svg
+
+The existing JavaScript files were checked and are in use. Do not delete:
+public/scripts/site.js
+public/scripts/search.js
+public/scripts/seo-preview.js

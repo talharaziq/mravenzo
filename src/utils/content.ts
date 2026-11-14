@@ -5,7 +5,19 @@ export type ArticleEntry = CollectionEntry<'articles'>;
 
 export async function getPublishedArticles() {
   const entries = await getCollection('articles', ({ data }) => data.published && !data.draft);
-  return entries.sort((a, b) => {
+
+  // A content filename can be duplicated while its frontmatter slug stays the same.
+  // Keep the file whose ID matches that slug so the site builds one canonical article.
+  const uniqueArticles = new Map<string, ArticleEntry>();
+  for (const article of entries) {
+    const slug = article.data.slug?.trim() || article.id;
+    const existing = uniqueArticles.get(slug);
+    if (!existing || (article.id === slug && existing.id !== slug)) {
+      uniqueArticles.set(slug, article);
+    }
+  }
+
+  return [...uniqueArticles.values()].sort((a, b) => {
     const aDate = a.data.publishDate ? new Date(a.data.publishDate).getTime() : 0;
     const bDate = b.data.publishDate ? new Date(b.data.publishDate).getTime() : 0;
     return bDate - aDate;

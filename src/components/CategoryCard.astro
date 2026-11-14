@@ -14,3 +14,98 @@ const { category, number } = Astro.props as { category: DecorCategory; number: s
   </div>
   <span class="topic-card-link">Explore topic <Icon name="arrow-up-right" size={15} /></span>
 </a>
+
+<style is:global>
+  /* Let topic cards grow with their text instead of forcing a square crop. */
+  .topics-section .topics-grid,
+  .category-group .topics-grid {
+    align-items: stretch;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .topics-grid > .topic-card {
+    min-width: 0;
+    min-height: 250px;
+    height: auto;
+    aspect-ratio: auto;
+    padding: 20px;
+  }
+
+  .topics-grid > .topic-card .topic-card-top,
+  .topics-grid > .topic-card .topic-card-link {
+    flex: 0 0 auto;
+  }
+
+  .topics-grid > .topic-card .topic-card-copy {
+    min-width: 0;
+    padding-top: 18px;
+  }
+
+  .topics-grid > .topic-card h3 {
+    max-width: 100%;
+    font-size: clamp(17px, 1.7vw, 22px);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
+  }
+
+  .topics-grid > .topic-card p {
+    min-height: 0;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  .topics-grid > .topic-card .topic-card-link {
+    align-self: flex-start;
+    margin-top: 14px;
+  }
+
+  @media (max-width: 1050px) {
+    .topics-section .topics-grid,
+    .category-group .topics-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .topics-section .topics-grid,
+    .category-group .topics-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 10px;
+    }
+
+    .topics-grid > .topic-card {
+      min-height: 248px;
+      padding: 16px;
+    }
+
+    .topics-grid > .topic-card .topic-card-copy {
+      padding-top: 16px;
+    }
+
+    .topics-grid > .topic-card h3 {
+      font-size: 18px;
+    }
+
+    .topics-grid > .topic-card p {
+      font-size: 10px;
+    }
+
+    .topics-grid > .topic-card .topic-icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .topics-grid > .topic-card {
+      min-height: 258px;
+      padding: 14px;
+    }
+
+    .topics-grid > .topic-card h3 {
+      font-size: 17px;
+    }
+  }
+</style>
